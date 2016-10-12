@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AWE Stereo click AR demo</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<meta charset="utf-8"/>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+#container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+}
+#info {
+  position: absolute;
+  z-index: 999;
+  top: 10px;
+  left: 10px;
+  background: #fff;
+  color: #000;
+  padding: 3px;
+}
+
+</style>
+</head>
+<body>
+<div id="info"></div>
+<div id="container"></div>
+<script type="text/javascript" src="../../js/awe-v8.js"></script>
+<script type="text/javascript" src="../../js/awe-loader.js"></script>
+<script type="text/javascript">
+//   DEBUG = true;
+  function add_pois() {
+  
+    // add some points of interest (poi) for each of the compass points
+    awe.pois.add({ id:'north', position: { x:0, y:0, z:200 } });
+    awe.pois.add({ id:'north_east', position: { x:200, y:0, z:200 } });
+    awe.pois.add({ id:'east', position: { x:200, y:0, z:0 } });
+    awe.pois.add({ id:'south_east', position: { x:200, y:0, z:-200 } });
+    awe.pois.add({ id:'south', position: { x:0, y:0, z:-200 } });
+    awe.pois.add({ id:'south_west', position: { x:-200, y:0, z:-200 } });
+    awe.pois.add({ id:'west', position: { x:-200, y:0, z:0 } });
+    awe.pois.add({ id:'north_west', position: { x:-200, y:0, z:200 } });
+  
+    // add projections to each of the pois
+    awe.projections.add({ 
+      id:'n', 
+      geometry:{ shape:'cube', x:50, y:50, z:50 }, 
+      rotation:{ x:30, y:30, z:0 },
+      material:{ 
+        type: 'phong',
+        color:0xFF0000, 
+      },
+    }, { poi_id: 'north' });
+  
+    awe.projections.add({ 
+      id:'ne', 
+      geometry:{ shape:'sphere', radius:40 }, 
+      material:{ 
+        type: 'phong',
+        color:0xCC000f, 
+      },
+    }, { poi_id: 'north_east' });
+  
+    awe.projections.add({ 
+      id:'e', 
+      geometry:{ shape:'cube', x:50, y:50, z:50 }, 
+      rotation:{ x:30, y:30, z:0 },
+      material:{ 
+        type: 'phong',
+        color:0x00FF00, 
+      },
+    }, { poi_id: 'east' });
+  
+    awe.projections.add({ 
+      id:'se', 
+      geometry:{ shape:'sphere', radius:40 }, 
+      material:{ 
+        type: 'phong',
+        color:0x34CCfa, 
+      },
+    }, { poi_id: 'south_east' });
+  
+    awe.projections.add({ 
+      id:'s', 
+      geometry:{ shape:'cube', x:50, y:50, z:50 }, 
+      rotation:{ x:30, y:30, z:0 },
+      material:{ 
+        type: 'phong',
+        color:0xF0FF0F, 
+      },
+    }, { poi_id: 'south' });
+  
+    awe.projections.add({ 
+      id:'sw', 
+      geometry:{ shape:'sphere', radius:40 }, 
+      material:{ 
+        type: 'phong',
+        color:0x00CCCC, 
+      },
+    }, { poi_id: 'south_west' });
+  
+    awe.projections.add({ 
+      id:'w', 
+      geometry:{ shape:'cube', x:50, y:50, z:50 }, 
+      rotation:{ x:30, y:30, z:0 },
+      material:{ 
+        type: 'phong',
+        color:0x0000FF, 
+      },
+    }, { poi_id: 'west' });
+  
+    awe.projections.add({ 
+      id:'nw', 
+      geometry:{ shape:'sphere', radius:40 }, 
+      material:{ 
+        type: 'phong',
+        color:0xCCffCC, 
+      },
+    }, { poi_id: 'north_west' });
+  }
+  window.addEventListener('load', function() {
+    window.awe.init({
+      device_type: awe.AUTO_DETECT_DEVICE_TYPE,
+      settings: {
+      	container_id: 'container',
+        default_camera_position: { x:0, y:0, z:0 },
+        default_lights:[
+          {
+            id: 'hemi',
+            type: 'hemisphere',
+            color: 0xAAAAAA,
+          },
+        ],
+      },
+      ready: function() {
+
+        awe.util.require([
+          {
+            capabilities: ['gum','webgl'],
+            files: [ 
+              [ '../../js/awe-standard-dependencies.js', '../../js/awe-standard.js'],
+              ['../../js/plugins/StereoEffect.js', '../../js/plugins/VREffect.js'],
+              [
+                '../../js/plugins/awe.rendering_effects.js', 
+                '../../js/plugins/awe-standard-object_clicked_or_focused.js', 
+                '../geo_ar/awe.geo_ar.js', // geo ar plugin 
+              ]
+            ],
+            success: function() { 
+							awe.setup_scene();
+			        
+						
+              add_pois();
+              
+              // object clicked is not set to auto-register
+  						var plugin = awe.plugins.view('object_clicked');
+  						if (plugin) {
+    						plugin.register();
+    						plugin.enable();
+  						}
+			        
+              awe.plugins.view('render_effects').enable();
+			        
+			        if (awe.plugins.view('geo_ar')) {
+  			        awe.plugins.view('geo_ar').enable();
+  			      }
+			
+			        var info = document.getElementById('info');
+			        // 'ar' will not do anything if gum is unavailable
+							awe.settings.update({data:{value: 'ar'}, where:{id: 'view_mode'}})
+							// stereo setting will only work if a vr/stereo plugin is available and supported by the device
+							awe.settings.update({data:{value: 'stereo'}, where:{id: 'view_count'}})
+              
+              var object_clicked = false;     
+			        awe.events.add([
+  			        {
+    			        id: '_click',
+    			        register: function(handler){
+      			        window.addEventListener('object_clicked', handler, false);
+    			        },
+    			        unregister: function(handler){
+      			        window.removeEventListener('object_clicked', handler, false);
+      			      },
+      			      handler: function(e) {
+        			      console.log(e);
+        			      object_clicked = true;
+        			      info.innerHTML = 'Clicked projection ID: '+e.detail.projection_id;
+      			      }
+  			        },
+  			        {
+    			        id: '_no_click',
+    			        register: function(handler){
+      			        window.addEventListener('click', handler, false);
+    			        },
+    			        unregister: function(handler){
+      			        window.removeEventListener('click', handler, false);
+      			      },
+      			      handler: function(e) {
+        			      if (object_clicked) {
+          			      object_clicked = false;
+        			      }
+        			      else {
+          			      info.innerHTML = 'scene clicked';
+        			      }
+      			      }
+  			        }
+			        ])
+			      },
+          },
+          {
+            capabilities: [],
+            success: function() { 
+		          document.body.innerHTML = '<p>Try this demo in the latest version of Chrome or Firefox on a PC or Android device</p>';
+            },
+          },
+        ]);
+      }
+    });
+  });
+</script>
+</body>
+</html>
