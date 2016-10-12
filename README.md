@@ -19,6 +19,8 @@ Or checkout some of our older demos showing showing different uses of awe.js
 - Leap Motion Sensor AR http://youtu.be/mDbvPU4aokQ
 - Google Glass AR http://youtu.be/M97E2m6dRO4
 
+Then checkout the docs in our [wiki](https://github.com/awe-media/awe.js/wiki).
+
 What is the Augmented Web?
 --------------------------
 It's what comes after html5!
