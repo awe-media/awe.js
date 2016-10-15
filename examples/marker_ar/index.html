@@ -72,6 +72,14 @@
 			        
 							awe.settings.update({data:{value: 'ar'}, where:{id: 'view_mode'}})
 							
+              /*
+                Binding a POI to a jsartoolkit marker is easy
+                - First add the awe-jsartoolkit-dependencies.js plugin (see above)
+                - Then select a marker image you'd like to use
+                - Then add the matching number as a suffix for your POI id (e.g. _64)
+                NOTE: See 64.png in this directory or https://github.com/kig/JSARToolKit/blob/master/demos/markers
+                This automatically binds your POI to that marker id - easy!
+              */
 			        awe.pois.add({ id:'jsartoolkit_marker_64', position: { x:0, y:0, z:0 }, visible: false });
 			        awe.projections.add({ 
 			          id:'marker_projection', 
@@ -82,7 +90,6 @@
                 texture: { path: 'awe_orange_square.png' },
                 visible: false,
 			        }, { poi_id: 'jsartoolkit_marker_64' });
-			        
 			        
 			        awe.pois.add({ id:'fixed_poi', position: { x:100, y:0, z:-250 }, visible: true });
 			        awe.projections.add({ 
