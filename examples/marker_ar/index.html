@@ -72,15 +72,16 @@
 			        
 							awe.settings.update({data:{value: 'ar'}, where:{id: 'view_mode'}})
 							
-			        awe.pois.add({ id:'jsartoolkit_marker_16', position: { x:0, y:0, z:0 }, visible: false });
+			        awe.pois.add({ id:'jsartoolkit_marker_64', position: { x:0, y:0, z:0 }, visible: false });
 			        awe.projections.add({ 
 			          id:'marker_projection', 
 								geometry: { shape: 'cube', x:50, y:50, z:50 },
                 position: { x:0, y:0, z:0 },
+                rotation: { x:0, y:0, z:180 },
 			          material:{ type: 'phong', color: 0xFFFFFF }, 
-                texture: { path: 'awe_by_buildAR.png' },
+                texture: { path: 'awe_orange_square.png' },
                 visible: false,
-			        }, { poi_id: 'jsartoolkit_marker_16' });
+			        }, { poi_id: 'jsartoolkit_marker_64' });
 			        
 			        
 			        awe.pois.add({ id:'fixed_poi', position: { x:100, y:0, z:-250 }, visible: true });
@@ -90,7 +91,7 @@
                 position: { x:0, y:0, z:0 },
                 rotation: { x:0, y:0, z:0 },
 			          material:{ type: 'phong', color: 0xFFFFFF }, 
-                texture: { path: 'awe_by_buildAR.png' },
+                texture: { path: 'awe_orange_square.png' },
 			        }, { poi_id: 'fixed_poi' });
 			        
 			        // animate the fixed POI
@@ -102,6 +103,7 @@
                 where:{ id:"fixed_projection" },
               });
 
+			        awe.plugins.view('render_effects').enable();
 			        awe.plugins.view('jsartoolkit').enable();
 			      },
           },
