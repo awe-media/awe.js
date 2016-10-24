@@ -3160,6 +3160,7 @@ if (params.background_image){
       renderer.set_size(awe_canvas.clientWidth, awe_canvas.clientHeight, false);
       this_awe.scene_needs_rendering = 1;
       
+      this_awe.scene_ready = true;
       var event = new CustomEvent('scene_ready');
       window.dispatchEvent(event);
       
@@ -4169,12 +4170,105 @@ if (params.background_image){
     		this.quaternion.setFromRotationMatrix( m1 );
     	};
     }();
-    
-    
+
+    var _create_pov_quaternion = function (alpha, beta, gamma, screen_orientation) {
+      var init = false;
+      if (this_awe.pov_quaternion == undefined) {
+        init = true;
+        this_awe.pov_quaternion = {
+          screen_orientation:screen_orientation,
+          alpha:alpha,
+          beta:beta,
+          gamma:gamma,
+        };
+      }
+      var pq = this_awe.pov_quaternion;
+      if (init || pq.screen_orientation !== screen_orientation || pq.alpha !== alpha || pq.beta !== beta || pq.gamma !== gamma) {
+        var final_quaternion = new THREE.Quaternion();
+        var device_euler = new THREE.Euler();
+        var screen_transform = new THREE.Quaternion();
+        var world_transform = new THREE.Quaternion( - Math.sqrt(0.5), 0, 0, Math.sqrt(0.5) ); // - PI/2 around the x-axis
+        var adjustment_transform = new THREE.Quaternion();
+        adjustment_transform.setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), 90 * Math.PI / 180 ); // rotate the world by 90degrees
+        var minus_half_angle = 0;
+
+        device_euler.set( beta, alpha, - gamma, 'YXZ' );
+        final_quaternion.setFromEuler( device_euler );
+        minus_half_angle = - screen_orientation / 2;
+        screen_transform.set( 0, 0, Math.sin( minus_half_angle ), Math.cos( minus_half_angle ) );
+        if ( alpha !== 0 ) {
+          final_quaternion.multiply( world_transform );
+        }
+        final_quaternion.multiply( screen_transform );
+        pq.quaternion = final_quaternion;
+      }
+      return pq.quaternion;
+    };
+
+    var _update_pov_quaternion = function(orientation_data, screen_orientation, zoom, zoom_delta, last_update, mode) {
+      var alpha, beta, gamma, orient;
+      var obj_quat;
+      var now = performance.now();
+      var delta = now-last_update;
+      if (delta > 1000/10) { // TODO gah should be part of tick()
+        last_update = now;
+        orient = THREE.Math.degToRad( screen_orientation || 0 ); // O
+        if (mode == 'point') {
+          alpha  = THREE.Math.degToRad( orientation_data.alpha || 0 ); // Z
+          beta   = THREE.Math.degToRad( orientation_data.beta  || 0 ); // X'
+          gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
+
+          // only process non-zero 3-axis data
+          if ( alpha !== 0 && beta !== 0 && gamma !== 0) {
+            obj_quat = this_awe.util.create_pov_quaternion( alpha, beta, gamma, orient );
+            awe.pov().get_mesh().quaternion.copy( obj_quat );
+            awe.scene_needs_rendering = 1;
+          }
+        }
+        else if (mode == 'sphere') {
+          if (orient == 0) {  // portrait
+            alpha  = THREE.Math.degToRad( orientation_data.alpha+90 || 0 ); // Z
+            beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
+            gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
+          } else if (orient > 0) { // right landscape
+            alpha  = THREE.Math.degToRad( orientation_data.alpha+180 || 0 ); // Z
+            beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
+            gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
+          } else { // left landscape
+            alpha  = THREE.Math.degToRad( orientation_data.alpha || 0 ); // Z
+            beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
+            gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
+          }
+
+          var new_alpha = -orientation_data.alpha;
+          var x = Math.cos(THREE.Math.degToRad(new_alpha));
+          var z = Math.sin(THREE.Math.degToRad(new_alpha));
+
+          var new_zoom = zoom+zoom_delta;
+
+          awe.pov().update({
+            position: {
+              x: new_zoom*x,
+              y: new_zoom,
+              z: (0.77*new_zoom)*z
+            }
+          });
+
+          awe.pov().look_at(awe.origin);
+
+          var new_quat = this_awe.util.create_pov_quaternion( alpha, beta, gamma, orient );
+          awe.pov().get_mesh().quaternion.copy( new_quat ); // no smoothing
+
+          awe.scene_needs_rendering = 1;
+        }
+      }
+    };
     
     this_awe.util.to_scene_coordinates = _to_scene_coordinates;
     this_awe.util.to_screen_coordinates = _to_screen_coordinates;
     this_awe.util.make_three_vector = _make_three_vector;
+    this_awe.util.create_pov_quaternion = _create_pov_quaternion;
+    this_awe.util.update_pov_quaternion = _update_pov_quaternion;
     this_awe.util._update_mesh_io = _update_mesh_io;
     this_awe.util.parse_color = _parse_color;
     this_awe.util.color_hex_string = _color_hex_string;
