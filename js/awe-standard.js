@@ -1430,20 +1430,21 @@
           }
           
           if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
-            
             navigator.mediaDevices.enumerateDevices()
             .then(function(devices) {
               var selected_source = null;
+              var last_videoinput_source = null;
               devices.forEach(function(device) {
                 if (device.kind === 'videoinput') {
-                  if (!selected_source) {
+                  if (BODY.facing_mode === 'environment' && device.label.indexOf('back') !== -1) {
                     selected_source = device.deviceId;
                   }
-                  else if (device.label.indexOf(' back') > -1) {
-                    selected_source = device.deviceId;
-                  }
+                  last_videoinput_source = device.deviceId;
                 }
               });
+              if ((!selected_source || BODY.facing_mode === 'environment') && last_videoinput_source) {
+                selected_source = last_videoinput_source;
+              }
               go(selected_source);
             })
             .catch(function(err) {
