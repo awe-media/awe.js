@@ -1878,7 +1878,10 @@
         BODY = [BODY];
       }
       var result_ids = [],
-        self = this;
+        self = this,
+        settings = this_awe.util.get_settings('loading_strategy'),
+        loading_strategy = HEAD.loading_strategy ? HEAD.loading_strategy : (settings.loading_strategy || 'preload');
+
       function finish_add(id) {
         var projection = this_awe.projections.view(id);
 /*
@@ -2035,8 +2038,106 @@ if (!parent) {
                 geometry = new THREE.TetrahedronGeometry(shape_data.radius, shape_data.detail);
                 break;
               case 'text': 
-                geometry = new THREE.TextGeometry(shape_data.text, shape_data.parameters)
-                break;
+                // async process
+                if (!shape_data.font_url) {
+                  console.warn('font_url required');
+                  throw { code: 500, message: 'font_url required for text projection'};
+                  // out of the forEach loop
+                  return;
+                }
+                item = new awe_projection(BODY_item, self);
+                item_id = self.constructor.prototype.add.call(self, item, HEAD); // super
+                item.trigger_state(awe.OBJECT_STATES.DEFAULT);
+                item.trigger_state(awe.OBJECT_STATES.LOADING);
+                
+                // load the font
+                var loader = new THREE.FontLoader();
+                loader.load( shape_data.font_url, function ( font ) {
+                  shape_data.parameters.font = font;
+                  
+          				var geometry = new THREE.TextGeometry( shape_data.text, shape_data.parameters );
+          				var texture, material;
+                  if (Object.keys(BODY_item.texture).length) {
+                    if (BODY_item.geometry.x) { // a cube
+                      BODY_item.texture.width = BODY_item.geometry.x; 
+                    }
+                    if (BODY_item.geometry.width) { // a plane
+                      BODY_item.texture.width = BODY_item.geometry.width; 
+                    }
+                    if (BODY_item.geometry.y) { // a cube
+                      BODY_item.texture.height = BODY_item.geometry.y; 
+                    }
+                    if (BODY_item.geometry.height) { // a plane
+                      BODY_item.texture.height = BODY_item.geometry.height; 
+                    }
+                      
+                    var capabilities = this_awe.util.get_capabilities('gum');
+                    if (BODY_item.texture.path == 'camerastream' && !capabilities.gum){
+                      
+                      delete(BODY_item.texture.path);
+                      BODY_item.texture.width = 800;
+                      BODY_item.texture.height = 600;
+                      BODY_item.texture.background_color = null;
+                      BODY_item.texture.label = 'camerastream texture is unsupported on this device';
+                      BODY_item.texture.font = '100px Arial';
+                    }
+                    // hidden projection textures start out as paused
+                    BODY_item.texture.paused = (BODY_item.visible != undefined ? !BODY_item.visible : false);
+                    BODY_item.texture.success_callback = function(){
+                      awe.util.trigger_event(window, 'texture_loaded', {detail: BODY_item.id});
+                    
+                    }
+                    var texture_id = this_awe.textures.add(BODY_item.texture);
+                    BODY_item.texture.id = texture_id.id;
+                    if (BODY_item.texture.color) {
+                      BODY_item.material.color = BODY_item.texture.color;
+                    }
+                    BODY_item.material.map = this_awe.textures.view(texture_id).value();
+                  }
+  
+                  var material_id = this_awe.materials.add(BODY_item.material);
+                  BODY_item.material.id = material_id.id;
+                  var material = this_awe.materials.view(material_id).value();
+                  mesh = new THREE.Mesh(geometry, material);
+                
+                  // and then finish creating like with other loaders 
+                    
+                  if (BODY_item.position) { 
+                    var position_mesh = item.get_mesh('position');
+                    _update_mesh_io({position: BODY_item.position}, position_mesh);
+                    delete (BODY_item.position);
+                  }
+                  if (BODY_item.scale) { 
+                    var scale_mesh = item.get_mesh('scale');
+                    _update_mesh_io({scale: BODY_item.scale}, scale_mesh);
+                    delete (BODY_item.scale);
+                  }
+                  if (BODY_item.rotation) { 
+                    var rotation_mesh = item.get_mesh('rotation');
+                    _update_mesh_io({rotation: BODY_item.rotation}, rotation_mesh);
+                    delete (BODY_item.rotation);
+                  }
+
+                  BODY_item.mesh = _update_mesh_io(BODY_item, mesh, true);
+                  BODY_item.mesh.name = 'the_mesh';
+                  
+                  
+                  if (loading_strategy != 'delay_placing' || item.auto_place_mesh()) {
+                    item.place_mesh(BODY_item.mesh);
+                  }
+                  try {
+                    console.log('loaded text geometry', BODY_item.id);
+                  } catch(e) {}
+                  
+                  finish_add(BODY_item.id);
+                  _update_materials(BODY_item.mesh);
+                  //end_callback();
+
+                });
+                result_ids.push(item_id.id);
+            
+                // out of forEach loop
+                return;
               case 'torus': 
                 geometry = new THREE.TorusGeometry(shape_data.radius, shape_data.tube, shape_data.radialSegments, shape_data.tubularSegments, shape_data.arc);
                 break;
@@ -3445,7 +3546,9 @@ if (params.background_image){
           };
         case 'text': 
           io = {
-            text: 'theAWEsomeWEB'
+            text: 'theAWEsomeWEB',
+            font_url: '',
+            parameters: {}
           };
           break;
       }
