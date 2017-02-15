@@ -1,6 +1,10 @@
 awe.js
 ======
 
+awe.media is hiring
+-------------------
+If you're an experienced javascript developer and you're interested in pushing the boundaries of Virtual and Augmented Reality or Computer Vision then contact us through `jobs [ at ] awe.media`.
+
 What is awe.js?
 ---------------
 It's the quickest and easiest way to create Augmented Web applications.
@@ -19,7 +23,9 @@ Or checkout some of our older demos showing showing different uses of awe.js
 - Leap Motion Sensor AR http://youtu.be/mDbvPU4aokQ
 - Google Glass AR http://youtu.be/M97E2m6dRO4
 
-Then checkout the docs in our [wiki](https://github.com/awe-media/awe.js/wiki).
+awe.js docs
+-----------
+Checkout the docs in our [wiki](https://github.com/awe-media/awe.js/wiki).
 
 What is the Augmented Web?
 --------------------------
@@ -46,7 +52,7 @@ awe.init({
 
 Once the `awe_ready` event is fired then your `awe.js` app is ready to start. Then you can call `awe.setup_scene()` to setup your scene. NOTE: This must be called after `awe_ready` has been fired.
 
-To see this working try loading `examples/basic_ar/index.html` in a suitable standards compliant browser.
+To see this working try loading `examples/basic/index.html` in a suitable standards compliant browser.
 
 How do you add objects to your scene?
 -------------------------------------
