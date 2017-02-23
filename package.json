@@ -1,0 +1,30 @@
+{
+  "name": "awe.js",
+  "version": "1.0.0",
+  "description": "The jQuery for the Augmented Web",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awe-media/awe.js.git"
+  },
+  "keywords": [
+    "awe.js",
+    "AR",
+    "VR",
+    "virtual",
+    "augmented",
+    "reality"
+  ],
+  "author": "npm@awe.media",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/awe-media/awe.js/issues"
+  },
+  "homepage": "https://github.com/awe-media/awe.js#readme"
+}
