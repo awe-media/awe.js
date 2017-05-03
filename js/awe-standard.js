@@ -4193,10 +4193,6 @@ if (params.background_image){
       return null;
     }
     
-    var last_tick_time;
-    var frames_per_second = 25;
-    var render_threshold = ((1000/frames_per_second)/1000);
-    
     function _tick() {
       try {
         var textures = this_awe.textures.list(),
@@ -4209,39 +4205,18 @@ if (params.background_image){
         if (textures_updated) {
           this_awe.scene_needs_rendering = 1;
         }
-        // throttle 
-        var render = false;
-        
-        if (!last_tick_time) {
-          last_tick_time = Date.now();
-          render = true;
-        }
-        else {
-          var time = Date.now();
-          var elapsed = (time - last_tick_time) / 1000;
-//           console.log('elapsed',elapsed, ((1000/frames_per_second)/1000));
-          if (elapsed >= render_threshold) {
-            render = true;
-            last_tick_time = time;
-          }
-        }
-        
-        if (render) {
-          TWEEN.update();
-          this_awe.resize_canvas();
-          this_awe.render();
-        }
+
+        // add throttle here if required
+        TWEEN.update();
+        this_awe.resize_canvas();
+        this_awe.render();
         
         requestAnimationFrame(function() {
-          if (render) {
-            var event = new CustomEvent('pretick');
-            window.dispatchEvent(event);
-          }
+          var event = new CustomEvent('pretick');
+          window.dispatchEvent(event);
           _tick();
-          if (render) {
-            var event = new CustomEvent('tick');
-            window.dispatchEvent(event);
-          }
+          var event = new CustomEvent('tick');
+          window.dispatchEvent(event);
         });
       } 
       catch(e) {
@@ -4314,57 +4289,55 @@ if (params.background_image){
       var obj_quat;
       var now = performance.now();
       var delta = now-last_update;
-      if (delta > 1000/10) { // TODO gah should be part of tick()
-        last_update = now;
-        orient = THREE.Math.degToRad( screen_orientation || 0 ); // O
-        if (mode == 'point') {
-          alpha  = THREE.Math.degToRad( orientation_data.alpha || 0 ); // Z
-          beta   = THREE.Math.degToRad( orientation_data.beta  || 0 ); // X'
-          gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
+      last_update = now;
+      orient = THREE.Math.degToRad( screen_orientation || 0 ); // O
+      if (mode == 'point') {
+        alpha  = THREE.Math.degToRad( orientation_data.alpha || 0 ); // Z
+        beta   = THREE.Math.degToRad( orientation_data.beta  || 0 ); // X'
+        gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
 
-          // only process non-zero 3-axis data
-          if ( alpha !== 0 && beta !== 0 && gamma !== 0) {
-            obj_quat = this_awe.util.create_pov_quaternion( alpha, beta, gamma, orient );
-            awe.pov().get_mesh().quaternion.copy( obj_quat );
-            awe.scene_needs_rendering = 1;
-          }
-        }
-        else if (mode == 'sphere') {
-          if (orient == 0) {  // portrait
-            alpha  = THREE.Math.degToRad( orientation_data.alpha+90 || 0 ); // Z
-            beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
-            gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
-          } else if (orient > 0) { // right landscape
-            alpha  = THREE.Math.degToRad( orientation_data.alpha+180 || 0 ); // Z
-            beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
-            gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
-          } else { // left landscape
-            alpha  = THREE.Math.degToRad( orientation_data.alpha || 0 ); // Z
-            beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
-            gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
-          }
-
-          var new_alpha = -orientation_data.alpha;
-          var x = Math.cos(THREE.Math.degToRad(new_alpha));
-          var z = Math.sin(THREE.Math.degToRad(new_alpha));
-
-          var new_zoom = zoom+zoom_delta;
-
-          awe.pov().update({
-            position: {
-              x: new_zoom*x,
-              y: new_zoom,
-              z: (0.77*new_zoom)*z
-            }
-          });
-
-          awe.pov().look_at(awe.origin);
-
-          var new_quat = this_awe.util.create_pov_quaternion( alpha, beta, gamma, orient );
-          awe.pov().get_mesh().quaternion.copy( new_quat ); // no smoothing
-
+        // only process non-zero 3-axis data
+        if ( alpha !== 0 && beta !== 0 && gamma !== 0) {
+          obj_quat = this_awe.util.create_pov_quaternion( alpha, beta, gamma, orient );
+          awe.pov().get_mesh().quaternion.copy( obj_quat );
           awe.scene_needs_rendering = 1;
         }
+      }
+      else if (mode == 'sphere') {
+        if (orient == 0) {  // portrait
+          alpha  = THREE.Math.degToRad( orientation_data.alpha+90 || 0 ); // Z
+          beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
+          gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
+        } else if (orient > 0) { // right landscape
+          alpha  = THREE.Math.degToRad( orientation_data.alpha+180 || 0 ); // Z
+          beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
+          gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
+        } else { // left landscape
+          alpha  = THREE.Math.degToRad( orientation_data.alpha || 0 ); // Z
+          beta   = THREE.Math.degToRad( orientation_data.beta || 0 ); // X'
+          gamma  = THREE.Math.degToRad( orientation_data.gamma || 0 ); // Y''
+        }
+
+        var new_alpha = -orientation_data.alpha;
+        var x = Math.cos(THREE.Math.degToRad(new_alpha));
+        var z = Math.sin(THREE.Math.degToRad(new_alpha));
+
+        var new_zoom = zoom+zoom_delta;
+
+        awe.pov().update({
+          position: {
+            x: new_zoom*x,
+            y: new_zoom,
+            z: (0.77*new_zoom)*z
+          }
+        });
+
+        awe.pov().look_at(awe.origin);
+
+        var new_quat = this_awe.util.create_pov_quaternion( alpha, beta, gamma, orient );
+        awe.pov().get_mesh().quaternion.copy( new_quat ); // no smoothing
+
+        awe.scene_needs_rendering = 1;
       }
     };
     
