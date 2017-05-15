@@ -57,7 +57,7 @@
       var view_count = awe.settings.view('view_count') ? awe.settings.view('view_count').value() : 'mono';
       return (view_count == 'stereo' && stereo_plugin && stereo_plugin.enabled);
     }
-    catch(e) { console.warn('object-focused plugin is_stereo()'e); }
+    catch(e) { console.warn('object-focused plugin is_stereo()', e); }
     return false
   }
   
