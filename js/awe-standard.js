@@ -1631,7 +1631,7 @@
             if (item.data.animation && item.data.animation.step_callback) {
               users_step_callback = item.data.animation.step_callback;
               item.data.animation.step_callback = function(io) {
-                this_awe.util.audio_context.listener.setPosition(io.mesh.position.x, io.mesh.position.y, io.mesh.position.z);
+                this_awe.util.audio_context.listener.setPosition(io.object.position.x, io.object.position.y, io.object.position.z);
                 return users_step_callback(io);
               }
             }
