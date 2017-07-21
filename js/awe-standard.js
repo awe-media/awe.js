@@ -4061,11 +4061,11 @@ if (params.background_image){
         var mx = m.n14, my = m.n24, mz = m.n34;
         m.n14 = m.n24 = m.n34 = 0;
         var vec = new THREE.Vector3(0,0,1);
-        vec.applyProjection(m);
+        vec.applyMatrix4(m);
         vec.normalize();
         
         var up = new THREE.Vector3(0,1,0);
-        up.applyProjection(m);
+        up.applyMatrix4(m);
         up.normalize();
         
         this_awe.util.audio_context.listener.setOrientation(vec.x, vec.y, vec.z, up.x, up.y, up.z);
