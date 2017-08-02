@@ -2479,38 +2479,146 @@ if (!parent) {
       
       BODY.forEach(function(item){
         if (item.data && item.where && item.where.id) {
-          var fields_updated = [];
-          if (item.data.position) { fields_updated.push('position'); }
-          if (item.data.scale) { fields_updated.push('scale'); }
-          if (item.data.rotation) { fields_updated.push('rotation'); }
+          var fields_updated = [],
+            rotation,
+            position,
+            scale,
+            texture;
+
+          if (item.data.position) {
+            fields_updated.push('position');
+            position = item.data.position;
+          }
+
+          if (item.data.scale) {
+            fields_updated.push('scale');
+            scale = item.data.scale;
+          }
+
+          if (item.data.rotation) {
+            fields_updated.push('rotation');
+            rotation = item.data.rotation;
+          }
+
+          if (item.data.texture) {
+            fields_updated.push('texture');
+            texture = item.data.texture;
+          }
+
           if (fields_updated.length) {
             HEAD.fields_updated = fields_updated;
           }
+
           if (!Array.isArray(item.where.id)) {
             item.where.id = [item.where.id];
           }
-          item.where.id.forEach(function(where_id){
+
+          item.where.id.forEach(function(_id) {
             try {
-              var object = this_awe.projections.view(where_id);
-              var mesh = object.get_mesh();
-            } catch(e) { return; /* TODO */ };
+              var projection = this_awe.projections.view(_id),  
+                data = projection.get_data();
+
+              if (!projection) {
+                //console.warn('no item to update');
+                return;
+              }
+
+              var position_mesh = projection.get_mesh('position'),
+                rotation_mesh = projection.get_mesh('rotation'),
+                scale_mesh = projection.get_mesh('scale'),
+                object_mesh = projection.get_mesh('object'),
+                texture_mesh = projection.get_three_mesh();
+
+            } catch(e) {
+              return console.warn(e);
+            };
+
             if(item.data.animation && parseFloat(item.data.animation.duration) > 0) {
               try {
                 _tween(_extend({
-                  object: object,
-//                   mesh: mesh,
+                  object: projection,
                   end_state: item.data
                 }, item.data.animation));
-              } catch(e) { /* TODO */ };
+              } catch(e) {
+                console.warn(e);
+              };
             }
             else {
               try {
-                var mesh = _update_mesh_io(item.data, mesh);
-              } catch(e) { /* TODO */ };
+                if (rotation) {
+                  _update_mesh_io({rotation: rotation}, rotation_mesh);
+                  delete (item.data.rotation);
+                }
+                if (position) {
+                  _update_mesh_io({position: position}, position_mesh);
+                  delete (item.data.position);
+                }
+                if (scale) {
+                  _update_mesh_io({scale: scale}, scale_mesh);
+                  delete (item.data.scale);
+                }
+
+                if (texture) {
+                  /* Can't do _update_mesh_io for texture since _update_mesh_io is being used when firstly adding projection */
+                  if (!texture_mesh) {
+                    throw 'Texture mesh is not available';
+                  }
+
+                  if (texture_mesh.geometry.x && texture_mesh.geometry.y) {
+                    /* A cube */
+                    texture.width = texture_mesh.geometry.x;
+                    texture.height = texture_mesh.geometry.y;
+                  }
+                  else if (texture_mesh.geometry.width && texture_mesh.geometry.height) {
+                    /* A plane */
+                    texture.width = texture_mesh.geometry.width;
+                    texture.height = texture_mesh.geometry.height;
+                  }
+
+                  var capabilities = this_awe.util.get_capabilities('gum');
+                  if (texture.path === 'camerastream' && !capabilities.gum) {
+                    delete texture.path;
+                    texture.width = 800;
+                    texture.height = 600;
+                    texture.background_color = null;
+                    texture.label = 'camerastream texture is unsupported on this device';
+                    texture.font = '100px Arial';
+                  }
+
+                  texture.paused = texture.hasOwnProperty('paused') ? !!(texture.paused) : true;
+                  var new_texture_id = this_awe.textures.add(texture);
+                  texture.id = new_texture_id.id;
+
+                  if (texture.color) {
+                    texture_mesh.material.color = texture.color;
+                  }
+
+                  if (texture_mesh.material && texture_mesh.material.map) {
+                    texture_mesh.material.map = this_awe.textures.view(new_texture_id).value();
+                    texture_mesh.material.needsUpdate = true;
+                  }
+
+                  /* Remove the old texture */
+                  if (data.texture && data.texture.id) {
+                    this_awe.textures.delete(data.texture.id);
+                  }
+
+                  /* Modify texture data */
+                  this_awe.util.extend(data.texture, texture);
+
+                  delete (item.data.texture);
+                }
+                
+                var mesh = _update_mesh_io(item.data, object_mesh);
+              } catch(e) {
+                console.warn(e);
+              }
             }
+
             var result = _clone(item);
             result.mesh = mesh;
-            return_result[where_id] = self.constructor.prototype.update.call(self, result, HEAD); // super
+            result.where.id = _id;
+            return_result[_id] = self.constructor.prototype.update.call(self, result, HEAD); // super
           });
         }
       });
