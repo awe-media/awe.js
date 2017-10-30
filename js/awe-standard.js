@@ -1399,27 +1399,39 @@
               function(stream) {
                 document.body.appendChild(video);
                 video.muted = true;
-                
-                BODY.stream = stream;
-                self.constructor.prototype.update.call(this, {data: {stream: stream}, where: {id: BODY.id}}, HEAD); // super
-                this_awe.util.connect_stream_to_src(stream, video);
-                var targets = this_awe.util.get_stream_targets();
-                
-                video.addEventListener('pause', function(){
-                  var event = new CustomEvent('gum_pause', { detail: { id: BODY.id } });
-                  window.dispatchEvent(event);
-                });
+                video.setAttribute('playsinline', '');
 
-                if (video.readyState == video.HAVE_METADATA) {
-                  var event = new CustomEvent('gum_ready', { detail: { id: BODY.id } });
-                  window.dispatchEvent(event);
+
+                 var constraints = {
+                 audio: false,
+                 video: {
+                     facingMode: 'environment'
+                 },
                 }
-                else {
-                  video.addEventListener('loadedmetadata', function (e) {
+
+                navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+                    video.srcObject = stream;
+                    BODY.stream = stream;
+                    self.constructor.prototype.update.call(this, {data: {stream: stream}, where: {id: BODY.id}}, HEAD); // super
+                    this_awe.util.connect_stream_to_src(stream, video);
+                    var targets = this_awe.util.get_stream_targets();
+
+                    video.addEventListener('pause', function(){
+                    var event = new CustomEvent('gum_pause', { detail: { id: BODY.id } });
+                    window.dispatchEvent(event);
+                  });
+
+                  if (video.readyState == video.HAVE_METADATA) {
                     var event = new CustomEvent('gum_ready', { detail: { id: BODY.id } });
                     window.dispatchEvent(event);
-                  }, false);
-                }
+                  }
+                  else {
+                    video.addEventListener('loadedmetadata', function (e) {
+                      var event = new CustomEvent('gum_ready', { detail: { id: BODY.id } });
+                      window.dispatchEvent(event);
+                    }, false);
+                  }
+                });
               }, 
               function(e) {
                 this_awe.gum_denied = true;
@@ -2695,6 +2707,7 @@ if (!parent) {
           texture.minFilter = THREE.LinearFilter;
           var paths = [];
           var v = document.createElement('video');
+          v.setAttribute('playsinline', '');
 //           document.body.appendChild(v)
           if (Array.isArray(BODY_item.path)) {
             BODY_item.path.forEach(function(p){
@@ -2724,6 +2737,7 @@ if (!parent) {
               var suffix = path.match(/\.(webm|mp4|ogg|ogv)/i);
               var source = document.createElement('source');
               source.setAttribute('src', path);
+              source.setAttribute('playsinline', '');
               source.setAttribute('type', 'video/'+suffix[1].toLowerCase());
               console.log(source, suffix[1]);
               v.appendChild(source);
@@ -2771,6 +2785,7 @@ if (!parent) {
               };
               poster_img.src = poster;
               v.setAttribute('poster', poster);
+              v.setAttribute('playsinline', '');
             }
             var _resize = function(){
               c.width = v.videoWidth || 320;
@@ -2819,6 +2834,7 @@ if (!parent) {
             play();
             v.setAttribute('data-sourcetype', 'video')
             v.setAttribute('data-textureid', id)
+            v.setAttribute('playsinline', '');
             
             if (BODY_item.loop !== undefined) {
               v.loop = BODY_item.loop;
@@ -2864,6 +2880,7 @@ if (!parent) {
               var vs = this_awe.video_stream();
               window.removeEventListener('gum_ready', v.go, false);
               window.addEventListener('touchstart', play, false);
+              v.setAttribute('playsinline', '');
               v.addEventListener('playing', function(){
                 window.removeEventListener('touchstart', play);
               })
@@ -2875,6 +2892,7 @@ if (!parent) {
             
             v.setAttribute('data-sourcetype', 'camerastream');
             v.setAttribute('data-textureid', id)
+            v.setAttribute('playsinline', '');
             
             if (BODY_item.loop !== undefined) {
               v.loop = BODY_item.loop;
@@ -2922,6 +2940,7 @@ if (!parent) {
               };
               poster_img.src = poster;
               v.setAttribute('poster', poster);
+              v.setAttribute('playsinline', '');
             }
             
             var _resize = function(){
@@ -3009,6 +3028,7 @@ if (!parent) {
               };
               poster_img.src = poster;
               v.setAttribute('poster', poster);
+              v.setAttribute('playsinline', '');
             }
             
             var _resize = function(){
@@ -3059,6 +3079,7 @@ if (!parent) {
             play();
             v.setAttribute('data-sourcetype', 'stream')
             v.setAttribute('data-textureid', id)
+            v.setAttribute('playsinline', '');
   
             texture = new THREE.Texture(c);
             texture.needsUpdate = true;
