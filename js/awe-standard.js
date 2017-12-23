@@ -4318,7 +4318,10 @@ if (params.background_image){
         TWEEN.update();
         this_awe.resize_canvas();
         this_awe.render();
-        
+	
+ 	var event = new CustomEvent('before_frame_render');
+        window.dispatchEvent(event);    
+    
         requestAnimationFrame(function() {
           var event = new CustomEvent('pretick');
           window.dispatchEvent(event);
