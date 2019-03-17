@@ -8,7 +8,7 @@ This page is for people interested in creating web-based Immersive experiences (
 
 It provides you with an overview of the different 'how-to' guides that are available to show you how to use different features and concepts when creating your own awe app.
 
-If you have any questions or need any other information please contact our [support team](mailto:support@awe.media). We love to help people get the best out of the awe platform.
+If you have any questions or need any other information please contact our support team (support [at] awe.media). We love to help people get the best out of the awe platform.
 
 - [How do I create an awe app?](#how-do-i-create-an-awe-app)
 - [How do I test and share my awe app?](#how-do-i-test-and-share-my-awe-app)
@@ -101,7 +101,7 @@ Below we outline 17 key Javascript objects you can work with when creating custo
 
 Another key part of your awe app is the orange circle that sits in the bottom left hand corner of your window. We call this the awe `doodat`. If you are signed-in as a `creator` then the `doodat` will almost always be there and you can use this to access the different modes and editing tools. 
 
-However, as a `creator` you can choose whether you want your end users to see the `doodat` or not. It does provide a useful UI that lets them easily change mode, etc. But if you want to remove some or all of the awe branding then you can contact our [support team](mailto:support@awe.media) to purchase the ability to hide the `doodat`.
+However, as a `creator` you can choose whether you want your end users to see the `doodat` or not. It does provide a useful UI that lets them easily change mode, etc. But if you want to remove some or all of the awe branding then you can contact our support team (support [at] awe.media) to purchase the ability to hide the `doodat`.
 
 ### awe
 The `awe.js` API is made available through the `awe` object in the DOM. `awe.js` was first released in 2012 and was the first Immersive Web Javascript framework released. Since then we have moved the version of `awe.js` that was in this github repository to the `deprecated` branch and the latest version is now available inline as part of your `awe.media` awe app. This latest version includes a wide range of enhancements and new features that are not included in the `deprecated` branch on github. This repos is now focused on providing guides and examples of how to create immersive web-based experiences using `awe.media` based awe apps.
@@ -394,7 +394,7 @@ awe.plugins.list()
 ## Detailed 'how-to' guides on specific topics
 Below is a collection of detailed 'how-to' guides that will help you complete a specific goal or objective. They assume you have read the content above and include all the relevant Javascript, CSS and HTML snippets you may require.
 
-If you have an idea for another 'how-to' guide please contact [support team](mailto:support@awe.media). We'd love to hear from you.
+If you have an idea for another 'how-to' guide please contact our support team (support [at] awe.media). We'd love to hear from you.
 
 ### Adding HTML content to my awe app
 Learn about the key types of HTML content you can add to your awe app, the standard way you should do this and the common CSS styles you should be aware of. COMING SOON 
