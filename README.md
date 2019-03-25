@@ -402,8 +402,8 @@ Learn about the key types of HTML content you can add to your awe app, the stand
 ### Adding a 'start' page to my awe app
 Learn about how to add an 'start' page that your users will see when they first load your awe app. This is a great place to set the context for what they are about to experience and what they need to do. COMING SOON 
 
-### Referring to assets uploaded to my awe app
-Learn about how you can link to, or reference the different types of assets you have uploaded to the media library within your awe app. COMING SOON 
+### [Referring to assets uploaded to my awe app](https://github.com/awe-media/awe.js/wiki/How-To:-Referring-to-assets-uploaded-to-my-awe-app)
+Learn about how you can link to, or reference the different types of assets you have uploaded to the media library within your awe app. [Read more...](https://github.com/awe-media/awe.js/wiki/How-To:-Referring-to-assets-uploaded-to-my-awe-app) 
 
 ### Custom branding my awe app
 Learn about the different parts of your awe app that you can change as part of your custom branding using Javascript and CSS. COMING SOON 
@@ -432,6 +432,9 @@ Learn about how you can display a video that fills the browser window when a use
 ### Events provided by my awe app
 Learn about the common events provided by your awe app for use within your custom Javascript. COMING SOON 
 
+### Setting the size and scale of the 360° or VR scenes in my awe app
+Learn about the different parts that make up the size and strucure of the 360° or VR scenes in your awe app and how you can change their configuration. COMING SOON
+
 ### Working with directions in my awe app
 Learn about how to deal with compass headings and device orientation within custom Javascript for your awe app. COMING SOON 
 
@@ -446,6 +449,9 @@ Learn about how to create more dynamic animations like throwing objects, etc. CO
 
 ### Adding a score counter to my awe app
 Learn about how to add the HTML, CSS and Javascript needed to add a score counter that tracks different interactions within your awe app. COMING SOON 
+
+### Adding a special page to my awe app that only computer or only mobile users see
+Learn about how to setup a page that only shows for certain types of devices e.g. You may want to create an AR experience that only works on mobile or only works on a computer. COMING SOON
 
 ### Creating plugins for my awe app
 Learn about how to create your own awe plugins. COMING SOON 
