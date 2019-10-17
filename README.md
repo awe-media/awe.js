@@ -34,9 +34,10 @@ If you have any questions or need any other information please contact our suppo
   - [povs](#povs)
   - [video streams](#video-streams)
   - [plugins](#plugins)
-- How-to guides
+- [Detailed How-To guides on specific topics](#detailed-how-to-guides-on-specific-topics)
   - [Referring to assets uploaded to my awe app](#referring-to-assets-uploaded-to-my-awe-app) 
   - [Adding a custom scan again button to my awe app](#adding-a-custom-scan-again-button-to-my-awe-app) 
+  - [Showing a fullscreen video from a tap on an object in my awe app](#showing-a-fullscreen-video-from-a-tap-on-an-object-in-my-awe-app) 
   - [Events provided by my awe app](#events-provided-by-my-awe-app) 
 
 ## How do I create an awe app?
@@ -432,8 +433,8 @@ Learn about how you can setup an HTML overlay to create a persistent menu. COMIN
 ### [Adding a custom 'Scan again' button to my awe app](https://github.com/awe-media/awe.js/wiki/How-To:-Adding-a-custom-scan-again-button-to-my-awe-app)
 Learn about how you can add a scan again button within your views or as a persistent overlay image. [Read more...](https://github.com/awe-media/awe.js/wiki/How-To:-Adding-a-custom-scan-again-button-to-my-awe-app)
 
-### Showing a fullscreen video from a tap on an object in my awe app
-Learn about how you can display a video that fills the browser window when a user taps on an object in your awe app. COMING SOON 
+### [Showing a fullscreen video from a tap on an object in my awe app](https://github.com/awe-media/awe.js/wiki/How-To:-Showing-a-fullscreen-video-from-a-tap-on-an-object-in-my-awe-app)
+Learn about how you can display a video that fills the browser window when a user taps on an object in your awe app. [Read more...](https://github.com/awe-media/awe.js/wiki/How-To:-Showing-a-fullscreen-video-from-a-tap-on-an-object-in-my-awe-app) 
 
 ### [Events provided by my awe app](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
 Learn about the common events provided by your awe app for use within your custom Javascript and how you can tie your functionality to these states and events. [Read more...](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
