@@ -35,6 +35,7 @@ If you have any questions or need any other information please contact our suppo
   - [video streams](#video-streams)
   - [plugins](#plugins)
 - [Detailed How-To guides on specific topics](#detailed-how-to-guides-on-specific-topics)
+  - [Adding custom HTML content to my awe app](#adding-custom-html-content-to-my-awe-app)
   - [Referring to assets uploaded to my awe app](#referring-to-assets-uploaded-to-my-awe-app) 
   - [Adding a custom scan again button to my awe app](#adding-a-custom-scan-again-button-to-my-awe-app) 
   - [Showing a fullscreen video from a tap on an object in my awe app](#showing-a-fullscreen-video-from-a-tap-on-an-object-in-my-awe-app) 
@@ -403,8 +404,8 @@ Below is a collection of detailed 'how-to' guides that will help you complete a 
 
 If you have an idea for another 'how-to' guide please contact our support team (support [at] awe.media). We'd love to hear from you.
 
-### Adding HTML content to my awe app
-Learn about the key types of HTML content you can add to your awe app, the standard way you should do this and the common CSS styles you should be aware of. COMING SOON 
+### [Adding custom HTML content to my awe app](https://github.com/awe-media/awe.js/wiki/How-To:-Adding-HTML-content-to-my-awe-app)
+Learn about the key types of HTML content you can add to your awe app, the standard way you should do this and the common CSS styles you should be aware of. [Read more...](https://github.com/awe-media/awe.js/wiki/How-To:-Adding-HTML-content-to-my-awe-app) 
 
 ### Adding a 'start' page to my awe app
 Learn about how to add an 'start' page that your users will see when they first load your awe app. This is a great place to set the context for what they are about to experience and what they need to do. COMING SOON 
