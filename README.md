@@ -34,6 +34,10 @@ If you have any questions or need any other information please contact our suppo
   - [povs](#povs)
   - [video streams](#video-streams)
   - [plugins](#plugins)
+- How-to guides
+  - [Referring to assets uploaded to my awe app](#referring-to-assets-uploaded-to-my-awe-app) 
+  - [Adding a custom scan again button to my awe app](#adding-a-custom-scan-again-button-to-my-awe-app) 
+  - [Events provided by my awe app](#events-provided-by-my-awe-app) 
 
 ## How do I create an awe app?
 To get started you can [create a free trial at try.awe.media](https://try.awe.media). This lets you explore what you can create with your own awe app. This will setup your own awe app domain (e.g. `1234abcd.awe.io`), and all the experiences you create will be accessible as pages under this domain (e.g. `https://1234abce.awe.io/my-first-webar-experience`).
@@ -310,6 +314,8 @@ You can access these `events` through the `application` API e.g.
 application.current_app.events
 ```
 
+Find out more about the overall awe app event lifecycle in the [Events provided by my awe app](#events-provided-by-my-awe-app) section.
+
 ### actions
 When you configure interactivity using the creator UI your awe app will setup a specific `action` object. Depending on the type of object you are adding them to they can be `On load` (e.g. when the object loads), `On select` (e.g. when the object it clicked or tapped), etc.
 
@@ -429,8 +435,8 @@ Learn about how you can add a scan again button within your views or as a persis
 ### Showing a fullscreen video from a tap on an object in my awe app
 Learn about how you can display a video that fills the browser window when a user taps on an object in your awe app. COMING SOON 
 
-### Events provided by my awe app
-Learn about the common events provided by your awe app for use within your custom Javascript. COMING SOON 
+### [Events provided by my awe app](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
+Learn about the common events provided by your awe app for use within your custom Javascript and how you can tie your functionality to these states and events. [Read more...](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
 
 ### Setting the size and scale of the 360° or VR scenes in my awe app
 Learn about the different parts that make up the size and strucure of the 360° or VR scenes in your awe app and how you can change their configuration. COMING SOON
