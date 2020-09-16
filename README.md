@@ -37,6 +37,7 @@ If you have any questions or need any other information please contact our suppo
 - [Detailed How-To guides on specific topics](#detailed-how-to-guides-on-specific-topics)
   - [Adding custom HTML content to my awe app](#adding-custom-html-content-to-my-awe-app)
   - [Referring to assets uploaded to my awe app](#referring-to-assets-uploaded-to-my-awe-app) 
+  - [Adding audio to my awe app](#adding-audio-to-my-awe-app) 
   - [Adding simple object interactivity to my awe app](#adding-simple-object-interactivity-to-my-awe-app) 
   - [Adding a custom scan again button to my awe app](#adding-a-custom-scan-again-button-to-my-awe-app) 
   - [Showing a fullscreen video from a tap on an object in my awe app](#showing-a-fullscreen-video-from-a-tap-on-an-object-in-my-awe-app) 
@@ -420,11 +421,11 @@ Learn about the different parts of your awe app that you can change as part of y
 ### Adding simple object animations to my awe app
 Learn about how to transform and animate one or more objects using Javascript. COMING SOON 
 
+### [Adding audio to my awe app](https://github.com/awe-media/awe.js/wiki/How-To:-Adding-audio-to-my-awe-app)
+Learn about how to add audio to your awe app using Javascript. [Read more...](https://github.com/awe-media/awe.js/wiki/How-To:-Adding-audio-to-my-awe-app)
+
 ### [Adding simple object interactivity to my awe app](https://github.com/awe-media/awe.js/wiki/How-To:-Adding-simple-object-interactivity-to-my-awe-app)
 Learn about how to add interactivity to your objects using Javascript. [Read more...](https://github.com/awe-media/awe.js/wiki/How-To:-Adding-simple-object-interactivity-to-my-awe-app)
-
-### Adding audio to my awe app
-Learn about how to add and manage audio within your awe app using Javascript. COMING SOON 
 
 ### Creating menus with objects in my awe app
 Learn about how you can use multiple objects and visibility changes/animations to create multi-object structures like menus. COMING SOON 
