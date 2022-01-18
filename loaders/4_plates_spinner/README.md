@@ -9,6 +9,12 @@
 
 Video Example: [video_loader_example_4_plates_spinner.mp4](video_loader_example_4_plates_spinner.mp4)
 
+
+
+https://user-images.githubusercontent.com/22041360/149852073-b69e2be4-f311-41d8-b826-11694c9136d7.mp4
+
+
+
 Original Source on Codepen: [https://codepen.io/martinvd/pen/GehBy](https://codepen.io/martinvd/pen/GehBy)
 
 
