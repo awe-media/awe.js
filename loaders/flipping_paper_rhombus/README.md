@@ -9,6 +9,12 @@
 
 Video Example: [video_loader_example_flipping_paper_rhombus.mp4](video_loader_example_flipping_paper_rhombus.mp4)
 
+
+
+https://user-images.githubusercontent.com/22041360/149852172-5d580904-02c6-4028-a31d-5065ed25474c.mp4
+
+
+
 Original Source on icons8, example #1 by morningtrain [https://icons8.com/cssload/en/3d-loaders](https://icons8.com/cssload/en/3d-loaders)
 
 
