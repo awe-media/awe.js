@@ -8,6 +8,12 @@
 
 Video Example: [moving_truck.mp4](moving_truck.mp4)
 
+
+
+https://user-images.githubusercontent.com/22041360/149852224-44456002-1623-4d9d-bddf-727d8f554f91.mp4
+
+
+
 Original Source on Codepen: [https://codepen.io/ChrisJohnson/pen/OyXWpr](https://codepen.io/ChrisJohnson/pen/OyXWpr)
 
 
