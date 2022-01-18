@@ -1,0 +1,91 @@
+/* global vars (here you can easily modify how the loader looks) 
+ ** And if the style you're looking for is not listed here,
+** or, if you require a completely different custom loader,
+** you can always contact us at support@awe.media
+*/
+:root{
+  /*  you can change background color of the space here*/
+  --loader_space_background_color_center: #A6FF21;  /* <-- center color of gradient (lighter color) */
+  --loader_space_background_color_edge: #1E521A ;  /* <-- edge color of gradient (darker color) */
+
+/*  you can change spinner color of the plates in here*/
+  --loader_disk_color_center: #fff;  /* <-- center color of gradient (lighter color) */
+  --loader_disk_color_edge: #eee;  /* <-- edge color of gradient (darker color) */
+  --loader_spin_duration: 1s;  /* <-- duration of a 360 cicle (smaller numbers make it faster) */
+}
+
+.spinner_wrapper.visible_loader {
+  display: block;
+}
+
+.spinner_wrapper {
+  background-image: radial-gradient(circle farthest-corner at center, var(--loader_space_background_color_center) 0%, var(--loader_space_background_color_edge) 100%);
+  height: 100vh;
+  width: 100vw;
+ display:none;
+}
+
+.spinner_loader {
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  top: 50%;
+  left: 50%;
+  margin: -64px 0 0 -64px;
+  transform: perspective( 128px ) rotateX( 45deg );
+}
+
+  .spinner_loader.spinner_lower_side {
+    top: 60%;
+    opacity: .9;
+    filter: blur(30px);
+  }
+
+  .spinner_loader.spinner_lower_side  .spinner_inner_side {
+      background: #333;
+  }
+
+.spinner_outer_side {
+  box-sizing: border-box;
+  animation: spin_circles 1.5s linear infinite;
+  animation-duration: var( --loader_spin_duration);
+  height: 100%;
+}
+
+.spinner_inner_side {
+  position: absolute;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  background: radial-gradient(circle farthest-corner at center, var( --loader_disk_color_center) 0%, var( --loader_disk_color_edge) 100%);
+}
+
+.spinner_inner_side.tl_spinner {
+    top: 0;
+    left: 0;
+}
+
+  .spinner_inner_side.tr_spinner {
+    top: 0;
+    right: 0;
+  }
+
+ .spinner_inner_side.br_spinner {
+    bottom: 0;
+    right: 0;
+  }
+
+ 
+ .spinner_inner_side.bl_spinner {
+    bottom: 0;
+    left: 0;
+ }
+
+@keyframes spin_circles {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+.custom_loader_wrap {
+  overflow: auto; /* location bar hack */
+  overflow-x: hidden;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: all;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cl-background);
+
+  /*
+  ** You can modify these custom properties to change how the loader looks on the front end.
+  ** And if the style you're looking for is not listed here, 
+  ** or, if you require a completely different custom loader,
+  ** you can always contact us at support@awe.media
+  */
+
+  /* 1. page background color */
+  --cl-background: #15171c;  
+
+  /* 2. cube width */
+  --cl-cube-width: 15vmin;
+
+  /* 3. cube front side background color */
+  --cl-cube-bg-front: #3498db;
+
+  /* 4. cube back side background color */
+  --cl-cube-bg-back: #5ec6ce;
+
+  /* 5. cube right side background color */
+  --cl-cube-bg-right: #9b59b6;
+
+  /* 6. cube left side background color */
+  --cl-cube-bg-left: #e74c3c;
+
+  /* 7. cube top side background color */
+  --cl-cube-bg-top: #2ecc71;
+
+  /* 8. cube bottom side background color */
+  --cl-cube-bg-bottom: #f1c40f;
+
+  /* 9. cube animation duration */
+  --cl-cube-animation: 6s;
+
+}
+
+.custom_loader_inner_wrap {
+  width: var(--cl-cube-width);
+  height: var(--cl-cube-width);
+  position: relative;
+  perspective: 1000px;
+}
+
+.custom_loader_cube {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: cube_animation var(--cl-cube-animation) ease infinite;
+}
+
+.cube_front {
+  position: absolute;
+  background: var(--cl-cube-bg-front);
+  transform: translateZ(calc(var(--cl-cube-width) * 0.9));
+  width: var(--cl-cube-width);
+  height: var(--cl-cube-width);
+  border-radius: var(--cl-cube-width);
+}
+
+.cube_back {
+  position: absolute;
+  background: var(--cl-cube-bg-back);
+  transform: rotateX(-180deg) translateZ(calc(var(--cl-cube-width) * 0.9));
+  width: var(--cl-cube-width);
+  height: var(--cl-cube-width);
+  border-radius: var(--cl-cube-width);
+}
+
+.cube_right {
+  position: absolute;
+  background: var(--cl-cube-bg-right);
+  transform: rotateY(90deg) translateZ(calc(var(--cl-cube-width) * 0.9));
+  width: var(--cl-cube-width);
+  height: var(--cl-cube-width);
+  border-radius: var(--cl-cube-width);
+}
+
+.cube_left {
+  position: absolute;
+  background: var(--cl-cube-bg-left);
+  transform: rotateY(-90deg) translateZ(calc(var(--cl-cube-width) * 0.9));
+  width: var(--cl-cube-width);
+  height: var(--cl-cube-width);
+  border-radius: var(--cl-cube-width);
+}
+
+.cube_top { 
+  position: absolute;
+  background: var(--cl-cube-bg-top);
+  transform: rotateX(90deg) translateZ(calc(var(--cl-cube-width) * 0.9));
+  width: var(--cl-cube-width);
+  height: var(--cl-cube-width);
+  border-radius: var(--cl-cube-width);
+}
+
+.cube_bottom {
+  position: absolute;
+  background: var(--cl-cube-bg-bottom);
+  transform: rotateX(-90deg) translateZ(calc(var(--cl-cube-width) * 0.9));
+  width: var(--cl-cube-width);
+  height: var(--cl-cube-width);
+  border-radius: var(--cl-cube-width);
+}
+
+@keyframes cube_animation {
+  16.5% {
+    transform: translateZ(var(--cl-cube-width)) rotateX(-90deg);
+  }
+  33% {
+    transform: translateZ(var(--cl-cube-width)) rotateX(90deg);
+  }
+  49.5% {
+    transform: translateZ(var(--cl-cube-width)) rotateY(-90deg);
+  }
+  66% {
+    transform: translateZ(var(--cl-cube-width)) rotateY(90deg);
+  }
+  82% {
+    transform: translateZ(var(--cl-cube-width)) rotateX(-180deg);
+  }
+}

@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+.custom_loader_wrap {
+  overflow: auto; /* location bar hack */
+  overflow-x: hidden;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: all;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--cl-background);
+
+  /*
+  ** You can modify these custom properties to change how the loader looks on the front end.
+  ** And if the style you're looking for is not listed here, 
+  ** or, if you require a completely different custom loader,
+  ** you can always contact us at support@awe.media
+  */
+
+  /* 1. page background color */
+  --cl-background: #fff;
+  
+  /* 2. loader size */
+  --cl-size: 200px;
+
+  /* 3. animation duration */
+  --cl-animation-duration: 1150ms;
+
+  /* 4. inner circle colors */
+  --cl-inner-circle-color1: rgb(30,63,87);
+  --cl-inner-circle-color2: rgb(30,87,79);
+
+	/* 5. middle circle colors */
+  --cl-middle-circle-color1: rgb(68,120,145);
+  --cl-middle-circle-color2: rgb(68,145,128);
+
+	/* 6. outter circle colors */
+  --cl-outter-circle-color1: rgb(107,178,205);
+  --cl-outter-circle-color2: rgb(107,205,178);
+}
+
+.custom_loader {
+	position: absolute;
+	left: 54%;
+	width: var(--cl-size);
+	height: var(--cl-size);
+	margin-top: calc(var(--cl-size) * -0.5);
+	margin-left: calc(var(--cl-size) * -0.5);
+	perspective: var(--cl-size);
+}
+
+.custom_loader_dot {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: calc(var(--cl-size) * 117 / 195);
+	height: calc(var(--cl-size) * 117 / 195);
+	margin-top: calc(var(--cl-size) * -58 / 195);
+	margin-left: calc(var(--cl-size) * -58 / 195);
+	border-radius: calc(var(--cl-size) * 97 / 195);
+	border: calc(var(--cl-size) * 39 / 195) outset var(--cl-inner-circle-color1);
+	background-color: transparent;
+	transform-origin: 50% 50%;
+	transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+	animation: cssload-dot1 var(--cl-animation-duration) cubic-bezier(.49,.06,.43,.85) infinite;
+}
+
+.custom_loader_dot:nth-child(2) {
+	width: calc((var(--cl-size) * 136 / 195));
+	height: calc((var(--cl-size) * 136 / 195));
+	margin-top: calc((var(--cl-size) * -68 / 195));
+	margin-left: calc((var(--cl-size) * -68 / 195));
+	border-width: calc((var(--cl-size) * 29 / 195));
+	border-color: var(--cl-middle-circle-color1);
+	animation-name: cssload-dot2;
+	animation-delay: calc(var(--cl-animation-duration) * 86.25 / 1150);
+	box-shadow: inset 0 0 15px 0 rgba(0,0,0,0.1);
+	transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+}
+
+.custom_loader_dot:nth-child(3) {
+	width: calc((var(--cl-size) * 156 / 195));
+	height: calc((var(--cl-size) * 156 / 195));
+	margin-top: calc((var(--cl-size) * -78 / 195));
+	margin-left: calc((var(--cl-size) * -78 / 195));
+	border-width: calc((var(--cl-size) * 19 / 195));
+	border-color: var(--cl-outter-circle-color1);
+	animation-name: cssload-dot3;
+	animation-delay: calc(var(--cl-animation-duration) * 172.5 / 1150);
+	box-shadow: inset 0 0 15px 0 rgba(0,0,0,0.1);
+	transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+}
+
+@keyframes cssload-dot1 {
+	0% {
+		border-color: var(--cl-inner-circle-color1);
+		transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+	}
+	50% {
+		border-color: var(--cl-inner-circle-color2);
+		transform: rotateX(20deg) rotateY(20deg) rotateZ(50deg) translateZ(0px);
+	}
+	100% {
+		border-color: var(--cl-inner-circle-color1);
+		transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+	}
+}
+
+@keyframes cssload-dot2 {
+	0% {
+		border-color: var(--cl-middle-circle-color1);
+		box-shadow: inset 0 0 15px 0 rgba(255,255,255,0.2);
+		transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+	}
+	50% {
+		border-color: var(--cl-middle-circle-color2);
+		box-shadow: inset 0 0 15px 0 rgba(0,0,0,0.8);
+		transform: rotateX(20deg) rotateY(20deg) rotateZ(50deg) translateZ(0px);
+	}
+	100% {
+		border-color: var(--cl-middle-circle-color1);
+		box-shadow: inset 0 0 15px 0 rgba(255,255,255,0.2);
+		transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+	}
+}
+
+@keyframes cssload-dot3 {
+	0% {
+		border-color: var(--cl-outter-circle-color1);
+		box-shadow: inset 0 0 15px 0 rgba(0,0,0,0.1);
+		transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+	}
+	50% {
+		border-color: var(--cl-outter-circle-color2);
+		box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.8);
+		transform: rotateX(20deg) rotateY(20deg) rotateZ(50deg) translateZ(0px);
+	}
+	100% {
+		border-color: var(--cl-outter-circle-color1);
+		box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.1);
+		transform: rotateX(24deg) rotateY(20deg) rotateZ(0deg) translateZ(-24px);
+	}
+}

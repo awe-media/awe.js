@@ -1,0 +1,167 @@
+
+# LOADER: 3d flying ball
+
+- [Documentation](#documentation)
+- [Customization](#customization)
+
+## Video Example & Original Source
+
+
+Video Example: [video_loader_example_3d_flying_ball.mp4](video_loader_example_3d_flying_ball.mp4)
+
+Original Source on Codepen: [https://codepen.io/Hornebom/pen/lwCDe](https://codepen.io/Hornebom/pen/lwCDe)
+
+
+## Documentation
+
+This loader only uses [loader.html](loader.html) and [loader.css](loader.css), follow below steps to add it to your project. If you would like to change how the loaders looks, you can refer to [Customization](#customization).
+
+
+### Step One
+
+Copy below **HTML** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **HTML** section.
+
+
+```html
+
+<div id="3d_flying_ball_loader" class="visible_loader loader_wrapper_space">
+  <div class="MrCenter">
+    <div class="rotate_3dball"></div>
+  </div>
+</div>
+
+
+```
+
+### Step Two
+
+Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **CSS** section.
+
+```css
+
+/* global vars (here you can easily modify how the loader looks) 
+ ** And if the style you're looking for is not listed here,
+** or, if you require a completely different custom loader,
+** you can always contact us at support@awe.media
+*/
+:root{
+  --loader_hole_background_color: #292929; /* <-- you can change background color of holes in here */
+  --loader_space_background_color: #cecdc9;  /* <-- you can change background color of the space here*/
+  --loader_ball_translation_speed: 1s; /* <-- you can change the ball speed in here (time to complete 1 cycle) */
+}
+
+.visible_loader.loader_wrapper_space{
+  display: flex;
+}
+.loader_wrapper_space{
+    background-color:  var(--loader_hole_background_color); 
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    display: none;
+}
+.MrCenter,
+.rotate_3dball {
+  -webkit-perspective:20rem;
+	-webkit-transform-style: preserve-3d;
+  perspective:20rem;
+	transform-style: preserve-3d;
+}
+.MrCenter {
+  position:relative;
+  margin:auto;
+  padding:2rem;
+  background:radial-gradient(transparent 0%, transparent 60%,var( --loader_space_background_color) 61%, var( --loader_space_background_color) 100%),
+             linear-gradient( var( --loader_space_background_color) , var( --loader_space_background_color)),
+             radial-gradient(transparent 0%, transparent 60%, var( --loader_space_background_color) 61%, var( --loader_space_background_color) 100%);
+  background-size:6rem 6rem, 12rem 6rem, 6rem 6rem;
+  background-repeat:no-repeat;
+  background-position:0 0, 50% 0, 100% 0;
+  box-shadow:0 0 0 10000rem var( --loader_space_background_color);
+}
+.MrCenter:before,
+.MrCenter:after {
+  content:'';
+  position:absolute;
+  top:.45rem;
+  height:5.1rem;
+  width:5.1rem;
+  border-radius:50%;
+  background:transparent;
+  box-shadow:-2px -2px 4px rgba(0,0,0,0.5),
+             2px 2px 4px white;
+}
+.MrCenter:before {left:.45rem;}
+.MrCenter:after {right:.4rem;}
+.rotate_3dball {
+  position:relative;
+  width:20rem;
+  height:2rem;
+  -webkit-transform-origin:50%;
+  transform-origin:50%;
+  -webkit-animation:rotating 1s linear infinite;  
+  animation:rotating 1s linear infinite;
+  animation-duration: var(--loader_ball_translation_speed);
+}
+.rotate_3dball:after {
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  width:2rem;
+  height:2rem;
+  background:#fcfcfc;
+  border-radius:50%;
+  box-shadow:inset 0 -3px 4px rgba(255,255,255,0.6),
+             inset 0 -4px 8px rgba(0,0,0,0.5),
+             inset 0 -9px 12px #787775;
+  -webkit-animation:rotating 1s linear infinite reverse;
+  animation:rotating 1s linear infinite reverse;
+  animation-duration: var(--loader_ball_translation_speed);
+}
+@-webkit-keyframes rotating {
+  0% {-webkit-transform:rotateY(0);}
+  100% {-webkit-transform:rotateY(400grad);}
+}
+@keyframes rotating {
+  0% {tansform:rotateY(0);}
+  100% {transform:rotateY(400grad);}
+}
+
+
+```
+
+### Step Three
+
+Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you shoud clear out the existing codes first).
+
+For more details on events provided by your AWE app, please check [https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
+
+
+```javascript
+
+(async function() { 
+  await awe.on_state('ready'); 
+  document.getElementById('3d_flying_ball_loader').classList.remove('visible_loader');
+})();
+
+
+```
+
+## Customization
+
+You can modify these custom properties inside `:root` to change how the loader looks on the front end. And if the style you're looking for is not listed here, or, if you require a completely different custom loader, you can always contact us at **support@awe.media**
+
+```css
+
+:root{
+  --loader_hole_background_color: #292929; /* <-- you can change background color of holes in here */
+  --loader_space_background_color: #cecdc9;  /* <-- you can change background color of the space here*/
+  --loader_ball_translation_speed: 1s; /* <-- you can change the ball speed in here (time to complete 1 cycle) */
+}
+
+
+
+```
+
