@@ -8,6 +8,8 @@
 
 Video Example: [3d_cube_scale.mp4](3d_cube_scale.mp4)
 
+<video src="https://github.com/awe-media/awe.js/raw/master/loaders/3d_cube_scale/3d_cube_scale.mp4"></video>
+
 Original Source on Codepen: [https://codepen.io/Rplus/pen/yXzaoW](https://codepen.io/Rplus/pen/yXzaoW)
 
 
