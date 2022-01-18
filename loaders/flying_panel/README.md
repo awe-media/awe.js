@@ -8,6 +8,12 @@
 
 Video Example: [flying_panel.mp4](flying_panel.mp4)
 
+
+
+https://user-images.githubusercontent.com/22041360/149852200-39509435-9d7a-4cde-bdfb-a914917de012.mp4
+
+
+
 Original Source: [https://icons8.com/cssload/en/3d-loaders/2](https://icons8.com/cssload/en/3d-loaders/2)
 
 
