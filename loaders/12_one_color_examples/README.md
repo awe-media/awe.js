@@ -9,6 +9,12 @@
 
 Video Example: [video_loader_example_12_one_color_examples.mp4](video_loader_example_12_one_color_examples.mp4)
 
+
+
+https://user-images.githubusercontent.com/22041360/149851875-d3266b5b-9845-4ccc-84bc-90402dc52036.mp4
+
+
+
 Original Source on loading.io: [https://loading.io/css/](https://loading.io/css/)
 
 
