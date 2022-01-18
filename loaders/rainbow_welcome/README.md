@@ -9,6 +9,12 @@
 
 Video Example: [video_loader_example_rainbow_welcome.mp4](video_loader_example_rainbow_welcome.mp4)
 
+
+
+https://user-images.githubusercontent.com/22041360/149852274-c1dd1aa5-34fe-46b4-8cf4-5fdedb60e5dd.mp4
+
+
+
 Original Source on Codepen: [https://codepen.io/toshiya-marukubo/pen/dypmMQq](https://codepen.io/toshiya-marukubo/pen/dypmMQq)
 
 
