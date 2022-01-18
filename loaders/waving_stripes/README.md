@@ -10,6 +10,12 @@
 
 Video Example: [video_loader_example_waving_stripes.mp4](video_loader_example_waving_stripes.mp4)
 
+
+
+https://user-images.githubusercontent.com/22041360/149852513-7d228c80-8a15-45b2-acc8-84e9d8a8b9e5.mp4
+
+
+
 Original Source on Codepen: [https://codepen.io/JeromeRenders/pen/wMMMLV?editors=1100](https://codepen.io/JeromeRenders/pen/wMMMLV?editors=1100)
 
 
