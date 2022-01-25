@@ -19,13 +19,19 @@
 }
 .rings_loader_wrapper
 {
- margin: 0;
- padding: 0;
- display: none;
- justify-content: center;
- align-items: center;
- min-height: 100vh;
- background-color: var(--loader_color_rings_background);
+  margin: 0;
+  padding: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  position:fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--loader_color_rings_background);
 }
 .rings_loader
 {

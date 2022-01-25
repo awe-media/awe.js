@@ -47,9 +47,10 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 
 ```css
 
-*, *::before, *::after {
+.custom_loader_wrap * {
   box-sizing: border-box;
 }
+
 .custom_loader_wrap {
   overflow: auto; /* location bar hack */
   overflow-x: hidden;

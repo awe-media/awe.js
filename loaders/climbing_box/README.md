@@ -45,11 +45,12 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 
 ```css
 
-* {
+.custom_loader_wrap * {
   box-sizing: border-box;
 }
 
 .custom_loader_wrap {
+  box-sizing: border-box;
   overflow: auto; 
   overflow-x: hidden;
   overflow: hidden;

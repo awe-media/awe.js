@@ -63,13 +63,19 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 }
 .rings_loader_wrapper
 {
-	margin: 0;
-	padding: 0;
-	display: none;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	background-color: var(--loader_color_rings_background);
+  margin: 0;
+  padding: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  position:fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--loader_color_rings_background);
 }
 .rings_loader
 {
@@ -137,7 +143,7 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 
 ### Step Three
 
-Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you shoud clear out the existing codes first).
+Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you should clear out the existing codes first).
 
 For more details on events provided by your AWE app, please check [https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
 

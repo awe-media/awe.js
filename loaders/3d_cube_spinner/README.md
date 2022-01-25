@@ -59,7 +59,9 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* Custom styles starts here */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@600&display=swap');
 
-* { box-sizing: border-box; }
+.custom_loader_wrap * {
+  box-sizing: border-box;
+}
 
 .custom_loader_wrap {
   overflow: auto; /* location bar hack */

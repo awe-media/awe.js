@@ -5629,29 +5629,15 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 
 ### Step Three
 
-Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you shoud clear out the existing codes first).
+Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you should clear out the existing codes first).
 
 For more details on events provided by your AWE app, please check [https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
 
 
 ```javascript
 
-(async function() { 
-  await awe.on_state('ready'); 
-  document.getElementById('main_animation_holder').classList.remove('visible_loader');
-})();
-
-
-```
-
-
-### Step Four
-
-Copy below **JS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section.
-
-```js
-
 var animation_reset_counter = 0;
+var animation_reset_flag = true; 
 const animated_colorful_loader = document.querySelector('.text7');
 
 animated_colorful_loader.onanimationend = () => {
@@ -5660,15 +5646,23 @@ animated_colorful_loader.onanimationend = () => {
     //console.log('Animation ended');
     document.querySelector('#inner_loader_content').style.display = "none";
     animation_reset_counter = 0;
-     setTimeout(function(){ reset_color_animation(); }, 500);
+     if(animation_reset_flag) {setTimeout(function(){ reset_color_animation(); }, 500);}
   }
 };
 function reset_color_animation(){
-	document.querySelector('#inner_loader_content').style.display = "flex";
+    document.querySelector('#inner_loader_content').style.display = "flex";
 }
 
 
+(async function() { 
+  await awe.on_state('ready'); 
+  document.getElementById('main_animation_holder').classList.remove('visible_loader');
+   animation_reset_flag = false;
+})();
+
+
 ```
+
 
 ## Customization
 

@@ -20,6 +20,11 @@
   min-width: 100vw;
   min-height: 100vh;
   display:none;
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
 }
  
  ul.page_loader_content {

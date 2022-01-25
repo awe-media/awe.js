@@ -11,15 +11,26 @@
 
 /* general css (wrapper) */
 .basic_loader_wrapper.visible_loader{
-display: table-cell;
+  display: block;
+}
+.single_loader_holder{
+  min-width:100vw;
+  min-height: 100vh;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  height:100vh;
 }
 .basic_loader_wrapper{
-display: none;
-width: 100vw;
-height:100vh;
-background-color: var(--loader_main_background_color);
-text-align: center;
-vertical-align: middle;
+  display: none;
+  min-width: 100vw;
+  min-height:100vh;
+  background-color: var(--loader_main_background_color);
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right: 0;
 }
 /* end of general css */
 

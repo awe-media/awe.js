@@ -1,11 +1,12 @@
 /* Custom styles starts here */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 
-* {
+.custom_loader_wrap * {
   box-sizing: border-box;
 }
 
 .custom_loader_wrap {
+  box-sizing: border-box;
   overflow: auto; 
   overflow-x: hidden;
   overflow: hidden;

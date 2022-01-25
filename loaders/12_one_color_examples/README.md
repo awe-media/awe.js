@@ -32,65 +32,69 @@ Copy below **HTML** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM
 
 <div id="basic_loaders_holder" class="basic_loader_wrapper visible_loader"> <!-- main wrapper -->
 
-<!-- here you can pick different basic loaders -->
+  <div class="single_loader_holder">
 
-<!-- circle flips like a coin -->
-<div class="lds-circle"><div></div></div>
-<!-- circle flips like a coin -->
+    <!-- here you can pick different basic loaders -->
 
-<!-- start of heart beating -->
-<div class="lds-heart"><div></div></div>
-<!-- end of heart beating -->
+    <!-- circle flips like a coin -->
+    <div class="lds-circle"><div></div></div>
+    <!-- circle flips like a coin -->
 
-<!-- start of loading roller -->
-<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-<!-- end of loading roller -->
+    <!-- start of heart beating -->
+    <div class="lds-heart"><div></div></div>
+    <!-- end of heart beating -->
 
-
-<!-- start of 3 dots moving -->
-<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-<!-- end of 3 dots moving -->
-
-<br> <!-- separation for example purposes -->
-
-<!-- start of hour glass spinning -->
-<div class="lds-hourglass"></div>
-<!-- end of hour glass spinning -->
-
-<!-- start circular waves -->
-<div class="lds-ripple"><div></div><div></div></div>
-<!-- end circular waves -->
+    <!-- start of loading roller -->
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <!-- end of loading roller -->
 
 
+    <!-- start of 3 dots moving -->
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    <!-- end of 3 dots moving -->
+
+    <br> <!-- separation for example purposes -->
+
+    <!-- start of hour glass spinning -->
+    <div class="lds-hourglass"></div>
+    <!-- end of hour glass spinning -->
+
+    <!-- start circular waves -->
+    <div class="lds-ripple"><div></div><div></div></div>
+    <!-- end circular waves -->
 
 
-<!-- start of classic loading circle (spinning) -->
-<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-<!-- end of classic loading circle (spinning) -->
 
-<!-- start of 6 dots loader -->
-<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-<!-- end of 6 dots loader -->
 
-<br> <!-- separation for example purposes -->
+    <!-- start of classic loading circle (spinning) -->
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <!-- end of classic loading circle (spinning) -->
 
-<!-- start of continuous spinning circle -->
-<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-<!-- end of continuous spinning circle -->
+    <!-- start of 6 dots loader -->
+    <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <!-- end of 6 dots loader -->
 
-<!-- start of dual spinning circle -->
-<div class="lds-dual-ring"></div>
-<!-- end of dual spinning circle -->
+    <br> <!-- separation for example purposes -->
 
-<!-- start of default dot circle -->
-<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-<!-- end of default dot circle -->
+    <!-- start of continuous spinning circle -->
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <!-- end of continuous spinning circle -->
 
-<!-- start of 3squares animation -->
-<div class="lds-3squares"><div></div><div></div><div></div></div>
-<!-- end of 3squares animation -->
+    <!-- start of dual spinning circle -->
+    <div class="lds-dual-ring"></div>
+    <!-- end of dual spinning circle -->
 
-<!-- end of picking different basic loaders -->
+    <!-- start of default dot circle -->
+    <div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <!-- end of default dot circle -->
+
+    <!-- start of 3squares animation -->
+    <div class="lds-3squares"><div></div><div></div><div></div></div>
+    <!-- end of 3squares animation -->
+
+    <!-- end of picking different basic loaders -->
+
+  </div> <!-- end of single loader holder -->
 
 <div> <!-- end of loader wrapper -->
 
@@ -108,56 +112,67 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 ** or, if you require a completely different custom loader,
 ** you can always contact us at support@awe.media
 */
-  :root{
-    --main_animated_figure_color: #fa6602; /* <-- you can change the main figure color here */
-    --loader_main_background_color: #565656; /* <-- you can change the page background color here */
-  }
+:root{
+  --main_animated_figure_color: #fa6602; /* <-- you can change the main figure color here */
+  --loader_main_background_color: #565656; /* <-- you can change the page background color here */
+}
 /* .... end of css global vars ....*/
 
 /* general css (wrapper) */
 .basic_loader_wrapper.visible_loader{
+  display: block;
+}
+.single_loader_holder{
+  min-width:100vw;
+  min-height: 100vh;
+  text-align: center;
+  vertical-align: middle;
   display: table-cell;
+  height:100vh;
 }
 .basic_loader_wrapper{
   display: none;
-  width: 100vw;
-  height:100vh;
+  min-width: 100vw;
+  min-height:100vh;
   background-color: var(--loader_main_background_color);
-  text-align: center;
-  vertical-align: middle;
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right: 0;
 }
 /* end of general css */
 
 /* ----------------------------------- */
 /* start of circle flips like a coin */
 .lds-circle {
-  display: inline-block;
-  transform: translateZ(1px);
+display: inline-block;
+transform: translateZ(1px);
 }
 .lds-circle > div {
-  display: inline-block;
-  width: 64px; /* <-- you can change the circle width  here */
-  height: 64px; /* <-- you can change the circle height  here */
-  margin: 8px;
-  border-radius: 50%;
-  background: var(--main_animated_figure_color);
-  animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;  /* <-- you can change the circle's speed here by decreasing the duration (or slower it by increasing 
-  duration) */
+display: inline-block;
+width: 64px; /* <-- you can change the circle width  here */
+height: 64px; /* <-- you can change the circle height  here */
+margin: 8px;
+border-radius: 50%;
+background: var(--main_animated_figure_color);
+animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;  /* <-- you can change the circle's speed here by decreasing the duration (or slower it by increasing 
+duration) */
 }
 @keyframes lds-circle {
-  0%, 100% {
-    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
-  }
-  0% {
-    transform: rotateY(0deg);
-  }
-  50% {
-    transform: rotateY(1800deg);
-    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
-  }
-  100% {
-    transform: rotateY(3600deg);
-  }
+0%, 100% {
+  animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+}
+0% {
+  transform: rotateY(0deg);
+}
+50% {
+  transform: rotateY(1800deg);
+  animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+}
+100% {
+  transform: rotateY(3600deg);
+}
 }
 
 /* end of circle flips like a coin */
@@ -169,58 +184,58 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* start of heart beating */
 
 .lds-heart {
-  display: inline-block;
-  position: relative;
-  width: 80px; 
-  height: 80px;
-  transform: rotate(45deg);
-  transform-origin: 40px 40px; 
+display: inline-block;
+position: relative;
+width: 80px; 
+height: 80px;
+transform: rotate(45deg);
+transform-origin: 40px 40px; 
 }
 .lds-heart div {
-  top: 32px;
-  left: 32px;
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  background: var(--main_animated_figure_color);
-  animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1); /* <-- you can change the heart beating duration  here */
+top: 32px;
+left: 32px;
+position: absolute;
+width: 32px;
+height: 32px;
+background: var(--main_animated_figure_color);
+animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1); /* <-- you can change the heart beating duration  here */
 }
 .lds-heart div:after,
 .lds-heart div:before {
-  content: " ";
-  position: absolute;
-  display: block;
-  width: 32px; 
-  height: 32px;
-  background: var(--main_animated_figure_color);
+content: " ";
+position: absolute;
+display: block;
+width: 32px; 
+height: 32px;
+background: var(--main_animated_figure_color);
 }
 .lds-heart div:before {
-  left: -24px;
-  border-radius: 50% 0 0 50%;
+left: -24px;
+border-radius: 50% 0 0 50%;
 }
 .lds-heart div:after {
-  top: -24px;
-  border-radius: 50% 50% 0 0;
+top: -24px;
+border-radius: 50% 50% 0 0;
 }
 @keyframes lds-heart {
-  0% {
-    transform: scale(0.95);
-  }
-  5% {
-    transform: scale(1.1);
-  }
-  39% {
-    transform: scale(0.85);
-  }
-  45% {
-    transform: scale(1);
-  }
-  60% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(0.9);
-  }
+0% {
+  transform: scale(0.95);
+}
+5% {
+  transform: scale(1.1);
+}
+39% {
+  transform: scale(0.85);
+}
+45% {
+  transform: scale(1);
+}
+60% {
+  transform: scale(0.95);
+}
+100% {
+  transform: scale(0.9);
+}
 }
 
 /* end of heart beating */
@@ -231,88 +246,88 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* ----------------------------------- */
 /* start of loading roller */
 .lds-roller {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-roller div {
-  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  transform-origin: 40px 40px;
+animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+transform-origin: 40px 40px;
 }
 .lds-roller div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--main_animated_figure_color);
-  margin: -4px 0 0 -4px;
+content: " ";
+display: block;
+position: absolute;
+width: 7px;
+height: 7px;
+border-radius: 50%;
+background: var(--main_animated_figure_color);
+margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {
-  animation-delay: -0.036s;
+animation-delay: -0.036s;
 }
 .lds-roller div:nth-child(1):after {
-  top: 63px;
-  left: 63px;
+top: 63px;
+left: 63px;
 }
 .lds-roller div:nth-child(2) {
-  animation-delay: -0.072s;
+animation-delay: -0.072s;
 }
 .lds-roller div:nth-child(2):after {
-  top: 68px;
-  left: 56px;
+top: 68px;
+left: 56px;
 }
 .lds-roller div:nth-child(3) {
-  animation-delay: -0.108s;
+animation-delay: -0.108s;
 }
 .lds-roller div:nth-child(3):after {
-  top: 71px;
-  left: 48px;
+top: 71px;
+left: 48px;
 }
 .lds-roller div:nth-child(4) {
-  animation-delay: -0.144s;
+animation-delay: -0.144s;
 }
 .lds-roller div:nth-child(4):after {
-  top: 72px;
-  left: 40px;
+top: 72px;
+left: 40px;
 }
 .lds-roller div:nth-child(5) {
-  animation-delay: -0.18s;
+animation-delay: -0.18s;
 }
 .lds-roller div:nth-child(5):after {
-  top: 71px;
-  left: 32px;
+top: 71px;
+left: 32px;
 }
 .lds-roller div:nth-child(6) {
-  animation-delay: -0.216s;
+animation-delay: -0.216s;
 }
 .lds-roller div:nth-child(6):after {
-  top: 68px;
-  left: 24px;
+top: 68px;
+left: 24px;
 }
 .lds-roller div:nth-child(7) {
-  animation-delay: -0.252s;
+animation-delay: -0.252s;
 }
 .lds-roller div:nth-child(7):after {
-  top: 63px;
-  left: 17px;
+top: 63px;
+left: 17px;
 }
 .lds-roller div:nth-child(8) {
-  animation-delay: -0.288s;
+animation-delay: -0.288s;
 }
 .lds-roller div:nth-child(8):after {
-  top: 56px;
-  left: 12px;
+top: 56px;
+left: 12px;
 }
 @keyframes lds-roller {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+0% {
+  transform: rotate(0deg);
+}
+100% {
+  transform: rotate(360deg);
+}
 }
 
 /* end of loading roller */
@@ -322,59 +337,59 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* ----------------------------------- */
 /* start of 3 dots moving*/
 .lds-ellipsis {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-ellipsis div {
-  position: absolute;
-  top: 33px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--main_animated_figure_color);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+position: absolute;
+top: 33px;
+width: 13px;
+height: 13px;
+border-radius: 50%;
+background: var(--main_animated_figure_color);
+animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
-  left: 8px;
-  animation: lds-ellipsis1 0.6s infinite;
+left: 8px;
+animation: lds-ellipsis1 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(2) {
-  left: 8px;
-  animation: lds-ellipsis2 0.6s infinite;
+left: 8px;
+animation: lds-ellipsis2 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(3) {
-  left: 32px;
-  animation: lds-ellipsis2 0.6s infinite;
+left: 32px;
+animation: lds-ellipsis2 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(4) {
-  left: 56px;
-  animation: lds-ellipsis3 0.6s infinite;
+left: 56px;
+animation: lds-ellipsis3 0.6s infinite;
 }
 @keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
+0% {
+  transform: scale(0);
+}
+100% {
+  transform: scale(1);
+}
 }
 @keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
+0% {
+  transform: scale(1);
+}
+100% {
+  transform: scale(0);
+}
 }
 @keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
-  }
+0% {
+  transform: translate(0, 0);
+}
+100% {
+  transform: translate(24px, 0);
+}
 }
 /* end of 3 dots moving*/
 /* ----------------------------------- */
@@ -385,35 +400,35 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* start of hour glass spinning*/
 
 .lds-hourglass {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-hourglass:after {
-  content: " ";
-  display: block;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  margin: 8px;
-  box-sizing: border-box;
-  border: 32px solid var(--main_animated_figure_color);
-  border-color: var(--main_animated_figure_color) transparent var(--main_animated_figure_color) transparent;
-  animation: lds-hourglass 1.2s infinite;
+content: " ";
+display: block;
+border-radius: 50%;
+width: 0;
+height: 0;
+margin: 8px;
+box-sizing: border-box;
+border: 32px solid var(--main_animated_figure_color);
+border-color: var(--main_animated_figure_color) transparent var(--main_animated_figure_color) transparent;
+animation: lds-hourglass 1.2s infinite;
 }
 @keyframes lds-hourglass {
-  0% {
-    transform: rotate(0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  50% {
-    transform: rotate(900deg);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  100% {
-    transform: rotate(1800deg);
-  }
+0% {
+  transform: rotate(0);
+  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+50% {
+  transform: rotate(900deg);
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+100% {
+  transform: rotate(1800deg);
+}
 }
 
 /* end of hour glass spinning*/
@@ -426,36 +441,36 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* start of circular waves*/
 
 .lds-ripple {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-ripple div {
-  position: absolute;
-  border: 4px solid var(--main_animated_figure_color);
-  opacity: 1;
-  border-radius: 50%;
-  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+position: absolute;
+border: 4px solid var(--main_animated_figure_color);
+opacity: 1;
+border-radius: 50%;
+animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 .lds-ripple div:nth-child(2) {
-  animation-delay: -0.5s;
+animation-delay: -0.5s;
 }
 @keyframes lds-ripple {
-  0% {
-    top: 36px;
-    left: 36px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    top: 0px;
-    left: 0px;
-    width: 72px;
-    height: 72px;
-    opacity: 0;
-  }
+0% {
+  top: 36px;
+  left: 36px;
+  width: 0;
+  height: 0;
+  opacity: 1;
+}
+100% {
+  top: 0px;
+  left: 0px;
+  width: 72px;
+  height: 72px;
+  opacity: 0;
+}
 }
 /* end of circular waves*/
 /* ----------------------------------- */
@@ -467,82 +482,82 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* start of classic loading circle (spinning)*/
 
 .lds-spinner {
-  color: official;
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+color: official;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-spinner div {
-  transform-origin: 40px 40px;
-  animation: lds-spinner 1.2s linear infinite;
+transform-origin: 40px 40px;
+animation: lds-spinner 1.2s linear infinite;
 }
 .lds-spinner div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 3px;
-  left: 37px;
-  width: 6px;
-  height: 18px;
-  border-radius: 20%;
-  background: var(--main_animated_figure_color);
+content: " ";
+display: block;
+position: absolute;
+top: 3px;
+left: 37px;
+width: 6px;
+height: 18px;
+border-radius: 20%;
+background: var(--main_animated_figure_color);
 }
 .lds-spinner div:nth-child(1) {
-  transform: rotate(0deg);
-  animation-delay: -1.1s;
+transform: rotate(0deg);
+animation-delay: -1.1s;
 }
 .lds-spinner div:nth-child(2) {
-  transform: rotate(30deg);
-  animation-delay: -1s;
+transform: rotate(30deg);
+animation-delay: -1s;
 }
 .lds-spinner div:nth-child(3) {
-  transform: rotate(60deg);
-  animation-delay: -0.9s;
+transform: rotate(60deg);
+animation-delay: -0.9s;
 }
 .lds-spinner div:nth-child(4) {
-  transform: rotate(90deg);
-  animation-delay: -0.8s;
+transform: rotate(90deg);
+animation-delay: -0.8s;
 }
 .lds-spinner div:nth-child(5) {
-  transform: rotate(120deg);
-  animation-delay: -0.7s;
+transform: rotate(120deg);
+animation-delay: -0.7s;
 }
 .lds-spinner div:nth-child(6) {
-  transform: rotate(150deg);
-  animation-delay: -0.6s;
+transform: rotate(150deg);
+animation-delay: -0.6s;
 }
 .lds-spinner div:nth-child(7) {
-  transform: rotate(180deg);
-  animation-delay: -0.5s;
+transform: rotate(180deg);
+animation-delay: -0.5s;
 }
 .lds-spinner div:nth-child(8) {
-  transform: rotate(210deg);
-  animation-delay: -0.4s;
+transform: rotate(210deg);
+animation-delay: -0.4s;
 }
 .lds-spinner div:nth-child(9) {
-  transform: rotate(240deg);
-  animation-delay: -0.3s;
+transform: rotate(240deg);
+animation-delay: -0.3s;
 }
 .lds-spinner div:nth-child(10) {
-  transform: rotate(270deg);
-  animation-delay: -0.2s;
+transform: rotate(270deg);
+animation-delay: -0.2s;
 }
 .lds-spinner div:nth-child(11) {
-  transform: rotate(300deg);
-  animation-delay: -0.1s;
+transform: rotate(300deg);
+animation-delay: -0.1s;
 }
 .lds-spinner div:nth-child(12) {
-  transform: rotate(330deg);
-  animation-delay: 0s;
+transform: rotate(330deg);
+animation-delay: 0s;
 }
 @keyframes lds-spinner {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+0% {
+  opacity: 1;
+}
+100% {
+  opacity: 0;
+}
 }
 
 /* end of classic loading circle (spinning)*/
@@ -554,71 +569,71 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* ----------------------------------- */
 /* start of 6 dots loader*/
 .lds-grid {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-grid div {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--main_animated_figure_color);
-  animation: lds-grid 1.2s linear infinite;
+position: absolute;
+width: 16px;
+height: 16px;
+border-radius: 50%;
+background: var(--main_animated_figure_color);
+animation: lds-grid 1.2s linear infinite;
 }
 .lds-grid div:nth-child(1) {
-  top: 8px;
-  left: 8px;
-  animation-delay: 0s;
+top: 8px;
+left: 8px;
+animation-delay: 0s;
 }
 .lds-grid div:nth-child(2) {
-  top: 8px;
-  left: 32px;
-  animation-delay: -0.4s;
+top: 8px;
+left: 32px;
+animation-delay: -0.4s;
 }
 .lds-grid div:nth-child(3) {
-  top: 8px;
-  left: 56px;
-  animation-delay: -0.8s;
+top: 8px;
+left: 56px;
+animation-delay: -0.8s;
 }
 .lds-grid div:nth-child(4) {
-  top: 32px;
-  left: 8px;
-  animation-delay: -0.4s;
+top: 32px;
+left: 8px;
+animation-delay: -0.4s;
 }
 .lds-grid div:nth-child(5) {
-  top: 32px;
-  left: 32px;
-  animation-delay: -0.8s;
+top: 32px;
+left: 32px;
+animation-delay: -0.8s;
 }
 .lds-grid div:nth-child(6) {
-  top: 32px;
-  left: 56px;
-  animation-delay: -1.2s;
+top: 32px;
+left: 56px;
+animation-delay: -1.2s;
 }
 .lds-grid div:nth-child(7) {
-  top: 56px;
-  left: 8px;
-  animation-delay: -0.8s;
+top: 56px;
+left: 8px;
+animation-delay: -0.8s;
 }
 .lds-grid div:nth-child(8) {
-  top: 56px;
-  left: 32px;
-  animation-delay: -1.2s;
+top: 56px;
+left: 32px;
+animation-delay: -1.2s;
 }
 .lds-grid div:nth-child(9) {
-  top: 56px;
-  left: 56px;
-  animation-delay: -1.6s;
+top: 56px;
+left: 56px;
+animation-delay: -1.6s;
 }
 @keyframes lds-grid {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+0%, 100% {
+  opacity: 1;
+}
+50% {
+  opacity: 0.5;
+}
 }
 
 /* end of 6 dots loader*/
@@ -631,39 +646,39 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* ----------------------------------- */
 /* start of continuous spinning circle*/
 .lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid var(--main_animated_figure_color);
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: var(--main_animated_figure_color) transparent transparent transparent;
+box-sizing: border-box;
+display: block;
+position: absolute;
+width: 64px;
+height: 64px;
+margin: 8px;
+border: 8px solid var(--main_animated_figure_color);
+border-radius: 50%;
+animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+border-color: var(--main_animated_figure_color) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
+animation-delay: -0.45s;
 }
 .lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
+animation-delay: -0.3s;
 }
 .lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
+animation-delay: -0.15s;
 }
 @keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+0% {
+  transform: rotate(0deg);
+}
+100% {
+  transform: rotate(360deg);
+}
 }
 
 /* end of continuous spinning circle*/
@@ -675,28 +690,28 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* ----------------------------------- */
 /* start of dual spinning circle*/
 .lds-dual-ring {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+width: 80px;
+height: 80px;
 }
 .lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid var(--main_animated_figure_color);
-  border-color: var(--main_animated_figure_color) transparent var(--main_animated_figure_color) transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
+content: " ";
+display: block;
+width: 64px;
+height: 64px;
+margin: 8px;
+border-radius: 50%;
+border: 6px solid var(--main_animated_figure_color);
+border-color: var(--main_animated_figure_color) transparent var(--main_animated_figure_color) transparent;
+animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+0% {
+  transform: rotate(0deg);
+}
+100% {
+  transform: rotate(360deg);
+}
 }
 /* end of dual spinning circle*/
 /* ----------------------------------- */
@@ -705,86 +720,86 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* ----------------------------------- */
 /* start of default dot circle*/
 .lds-default {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-default div {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: var(--main_animated_figure_color);
-  border-radius: 50%;
-  animation: lds-default 1.2s linear infinite;
+position: absolute;
+width: 6px;
+height: 6px;
+background: var(--main_animated_figure_color);
+border-radius: 50%;
+animation: lds-default 1.2s linear infinite;
 }
 .lds-default div:nth-child(1) {
-  animation-delay: 0s;
-  top: 37px;
-  left: 66px;
+animation-delay: 0s;
+top: 37px;
+left: 66px;
 }
 .lds-default div:nth-child(2) {
-  animation-delay: -0.1s;
-  top: 22px;
-  left: 62px;
+animation-delay: -0.1s;
+top: 22px;
+left: 62px;
 }
 .lds-default div:nth-child(3) {
-  animation-delay: -0.2s;
-  top: 11px;
-  left: 52px;
+animation-delay: -0.2s;
+top: 11px;
+left: 52px;
 }
 .lds-default div:nth-child(4) {
-  animation-delay: -0.3s;
-  top: 7px;
-  left: 37px;
+animation-delay: -0.3s;
+top: 7px;
+left: 37px;
 }
 .lds-default div:nth-child(5) {
-  animation-delay: -0.4s;
-  top: 11px;
-  left: 22px;
+animation-delay: -0.4s;
+top: 11px;
+left: 22px;
 }
 .lds-default div:nth-child(6) {
-  animation-delay: -0.5s;
-  top: 22px;
-  left: 11px;
+animation-delay: -0.5s;
+top: 22px;
+left: 11px;
 }
 .lds-default div:nth-child(7) {
-  animation-delay: -0.6s;
-  top: 37px;
-  left: 7px;
+animation-delay: -0.6s;
+top: 37px;
+left: 7px;
 }
 .lds-default div:nth-child(8) {
-  animation-delay: -0.7s;
-  top: 52px;
-  left: 11px;
+animation-delay: -0.7s;
+top: 52px;
+left: 11px;
 }
 .lds-default div:nth-child(9) {
-  animation-delay: -0.8s;
-  top: 62px;
-  left: 22px;
+animation-delay: -0.8s;
+top: 62px;
+left: 22px;
 }
 .lds-default div:nth-child(10) {
-  animation-delay: -0.9s;
-  top: 66px;
-  left: 37px;
+animation-delay: -0.9s;
+top: 66px;
+left: 37px;
 }
 .lds-default div:nth-child(11) {
-  animation-delay: -1s;
-  top: 62px;
-  left: 52px;
+animation-delay: -1s;
+top: 62px;
+left: 52px;
 }
 .lds-default div:nth-child(12) {
-  animation-delay: -1.1s;
-  top: 52px;
-  left: 62px;
+animation-delay: -1.1s;
+top: 52px;
+left: 62px;
 }
 @keyframes lds-default {
-  0%, 20%, 80%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
+0%, 20%, 80%, 100% {
+  transform: scale(1);
+}
+50% {
+  transform: scale(1.5);
+}
 }
 
 /* end of default dot circle*/
@@ -794,52 +809,51 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 /* ----------------------------------- */
 /* start of 3squares animation*/
 .lds-3squares {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
 }
 .lds-3squares div {
-  display: inline-block;
-  position: absolute;
-  left: 8px;
-  width: 16px;
-  background: var(--main_animated_figure_color);
-  animation: lds-3squares 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+display: inline-block;
+position: absolute;
+left: 8px;
+width: 16px;
+background: var(--main_animated_figure_color);
+animation: lds-3squares 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 .lds-3squares div:nth-child(1) {
-  left: 8px;
-  animation-delay: -0.24s;
+left: 8px;
+animation-delay: -0.24s;
 }
 .lds-3squares div:nth-child(2) {
-  left: 32px;
-  animation-delay: -0.12s;
+left: 32px;
+animation-delay: -0.12s;
 }
 .lds-3squares div:nth-child(3) {
-  left: 56px;
-  animation-delay: 0;
+left: 56px;
+animation-delay: 0;
 }
 @keyframes lds-3squares {
-  0% {
-    top: 8px;
-    height: 64px;
-  }
-  50%, 100% {
-    top: 24px;
-    height: 32px;
-  }
+0% {
+  top: 8px;
+  height: 64px;
+}
+50%, 100% {
+  top: 24px;
+  height: 32px;
+}
 }
 
 /* 3squares animation*/
 /* ----------------------------------- */
 
 
-
 ```
 
 ### Step Three
 
-Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you shoud clear out the existing codes first).
+Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you should clear out the existing codes first).
 
 For more details on events provided by your AWE app, please check [https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
 

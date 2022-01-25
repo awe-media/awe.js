@@ -60,12 +60,17 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
   display: flex;
 }
 .loader_wrapper_space{
-    background-color:  var(--loader_hole_background_color); 
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    justify-content: center;
-    display: none;
+  background-color:  var(--loader_hole_background_color); 
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  justify-content: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:0;
 }
 .MrCenter,
 .rotate_3dball {
@@ -140,7 +145,7 @@ Copy below **CSS** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM 
 
 ### Step Three
 
-Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you shoud clear out the existing codes first).
+Copy below **JavaScript** code to **Setting** -> **PROJECT BRANDING** -> **FULL CUSTOM LOADING SCREEN ENABLED** -> **JS** section (you should clear out the existing codes first).
 
 For more details on events provided by your AWE app, please check [https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app](https://github.com/awe-media/awe.js/wiki/How-To:-Events-provided-by-my-awe-app)
 

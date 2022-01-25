@@ -20,7 +20,12 @@
   background-color: var(--loader_origami_background);
   display: none;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  position: fixed;
+  top:0;
+  right:0;
+  left: 0;
+  bottom: 0;
 }
 
 .cssload-thecube {
